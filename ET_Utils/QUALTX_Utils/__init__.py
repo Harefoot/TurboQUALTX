@@ -8,7 +8,7 @@ pd.options.mode.chained_assignment = None  # default='warn'
 import sys
 sys.path.insert(0,r'M:\Library\Python\Packages')
 
-import ET_Utils.Plot_Utils
+
 import struct
 
 def parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring):
@@ -175,30 +175,9 @@ def parse_QUALTXoutfile(inputfolder, QUALTXoutfile):
     AllWQdf = AllWQdf[WQC]
     return StreamNames, Rdf, Hdf, AllWQdf
 
-def Process_QUALTX(inputfolder,QUALTXoutfile,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1):
-    
-    outputsubfolder = "_".join(QUALTXoutfile.split("."))+"_plots"
-    outputfolder = os.path.join(inputfolder,outputsubfolder)
-    
-    if os.path.exists(outputfolder) == False:
-        os.mkdir(outputfolder)    
-    
-    inputfile = os.path.join(inputfolder,QUALTXoutfile)
+def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,QUALTXoutfile,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1):
+    import ET_Utils.Plot_Utils
     figs = []
-
-    StreamNames, Rdf, Hdf, AllWQdf = parse_QUALTXoutfile(outputfolder, inputfile)#,HYDRcsv,REACHcsv)
- 
-    #print Hdf.columns
-    Hdfcols = list(Hdf.columns)
-    Hdf = pd.merge(Hdf,Rdf,left_on = 'ELEMENT',right_on = 'BEGIN ELEM NUM', how = "inner", suffixes = ['','_right']).reset_index()
-    Hdfcols.append('ID')
-    Hdf = Hdf[Hdfcols]
-    Rdfcols = list(Rdf.columns)
-    Rdf = pd.merge(Rdf,Hdf,on = 'ID', how = "outer", suffixes = ['','_right']).reset_index()
-    Rdf['StreamName'] = Rdf['NAME_right']
-    Rdfcols.append('StreamName')
-    Rdf = Rdf[Rdfcols]
-    
     for StreamName in StreamNames:
         
         #Start Plotting
@@ -284,3 +263,32 @@ def Process_QUALTX(inputfolder,QUALTXoutfile,Scenario,DOstds = [],WQC_of_interes
         ET_Utils.Plot_Utils.make_png(outputpdf)
         #print "monkey"
     return figs
+    
+def Process_QUALTX(inputfolder,QUALTXoutfile,Scenario,DOstds = [],
+                   WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1,plot_pdf = 1):
+    
+    outputsubfolder = "_".join(QUALTXoutfile.split("."))+"_plots"
+    outputfolder = os.path.join(inputfolder,outputsubfolder)
+    
+    if os.path.exists(outputfolder) == False:
+        os.mkdir(outputfolder)    
+    
+    inputfile = os.path.join(inputfolder,QUALTXoutfile)
+    
+    StreamNames, Rdf, Hdf, AllWQdf = parse_QUALTXoutfile(outputfolder, inputfile)#,HYDRcsv,REACHcsv)
+ 
+    #print Hdf.columns
+    Hdfcols = list(Hdf.columns)
+    Hdf = pd.merge(Hdf,Rdf,left_on = 'ELEMENT',right_on = 'BEGIN ELEM NUM', how = "inner", suffixes = ['','_right']).reset_index()
+    Hdfcols.append('ID')
+    Hdf = Hdf[Hdfcols]
+    Rdfcols = list(Rdf.columns)
+    Rdf = pd.merge(Rdf,Hdf,on = 'ID', how = "outer", suffixes = ['','_right']).reset_index()
+    Rdf['StreamName'] = Rdf['NAME_right']
+    Rdfcols.append('StreamName')
+    Rdf = Rdf[Rdfcols]
+
+    if plot_pdf == 1:
+        Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,QUALTXoutfile,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1)
+    
+    return StreamNames, Rdf, Hdf, AllWQdf
