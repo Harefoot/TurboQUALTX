@@ -1,0 +1,19 @@
+PlotFlag,PlotParameter,Units
+1,Ammonia,mg/L as N
+1,CBOD_1,mg/L
+1,Dissolved_Oxygen,mg/L
+1,Diss_Organic_Nitrogen,mg/L as N
+1,DO_Average,mg/L
+1,DO_Minimum,mg/L
+1,Nitrate,mg/L as N
+1,Segment_Depth,m
+1,Solids_1,mg/L
+1,Total_CBOD,mg/L
+1,Total_Light,Ly/day
+1,Total_Organic_N,mg/L as N
+1,Total_Solids,mg/L
+1,Tot_Phyt_Chlorophylla,ug/L
+1,Water_Temperature,deg C
+1,Total_Phosphorus,mg/L as P
+1,Total_Inorganic_P,mg/L as P
+0,TKN,mg/L as N
