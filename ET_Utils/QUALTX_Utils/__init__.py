@@ -67,7 +67,8 @@ def parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring):
     return cldf
     #f.close()   
     
-def parse_QUALTXoutfile(inputfolder, QUALTXoutfile):
+#def parse_QUALTXoutfile(inputfolder, QUALTXoutfile):
+def parse_QUALTXoutfile(QUALTXoutfile):
 
     #---------------------------------------------------------------------------------------------------------
     #Hard code in the WQC headers
@@ -175,7 +176,8 @@ def parse_QUALTXoutfile(inputfolder, QUALTXoutfile):
     AllWQdf = AllWQdf[WQC]
     return StreamNames, Rdf, Hdf, AllWQdf
 
-def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,QUALTXoutfile,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1):
+def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1):
+
     import ET_Utils.Plot_Utils
     figs = []
     for StreamName in StreamNames:
@@ -256,7 +258,7 @@ def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,QUALTXoutfile,Scenar
         ax.legend(handles, labels, loc=loc)
         
         fig.text(0.1,0.05, "Water quality profiles for " +StreamName + '.',fontsize = 16)
-        fig.text(0.1,0.02, QUALTXoutfile+' ('+Scenario+').',fontsize = 12)
+        fig.text(0.1,0.02, basename+' ('+Scenario+').',fontsize = 12)
         figs.append(fig)
         pp.savefig(fig)
         pp.close()            
@@ -264,18 +266,15 @@ def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,QUALTXoutfile,Scenar
         #print "monkey"
     return figs
     
-def Process_QUALTX(inputfolder,QUALTXoutfile,Scenario,DOstds = [],
+#def Process_QUALTX(inputfolder,QUALTXoutfile,Scenario,DOstds = [],
+def Process_QUALTX(QUALTXoutfile,Scenario,DOstds = [],
                    WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1,plot_pdf = 1):
     
-    outputsubfolder = "_".join(QUALTXoutfile.split("."))+"_plots"
-    outputfolder = os.path.join(inputfolder,outputsubfolder)
+    #inputfile = os.path.join(inputfolder,QUALTXoutfile)
+    #inputfile = QUALTXoutfile
     
-    if os.path.exists(outputfolder) == False:
-        os.mkdir(outputfolder)    
-    
-    inputfile = os.path.join(inputfolder,QUALTXoutfile)
-    
-    StreamNames, Rdf, Hdf, AllWQdf = parse_QUALTXoutfile(outputfolder, inputfile)#,HYDRcsv,REACHcsv)
+    #StreamNames, Rdf, Hdf, AllWQdf = parse_QUALTXoutfile(outputfolder, inputfile)#,HYDRcsv,REACHcsv)
+    StreamNames, Rdf, Hdf, AllWQdf = parse_QUALTXoutfile(QUALTXoutfile)#,HYDRcsv,REACHcsv)
  
     #print Hdf.columns
     Hdfcols = list(Hdf.columns)
@@ -289,6 +288,13 @@ def Process_QUALTX(inputfolder,QUALTXoutfile,Scenario,DOstds = [],
     Rdf = Rdf[Rdfcols]
 
     if plot_pdf == 1:
-        Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,QUALTXoutfile,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1)
+        outputfolder = os.path.dirname(QUALTXoutfile)
+        basename = os.path.basename(QUALTXoutfile)
+        outputsubfolder = "_".join(basename.split("."))+"_plots"
+        outputfolder = os.path.join(outputfolder,outputsubfolder)
+    
+        if os.path.exists(outputfolder) == False:
+            os.mkdir(outputfolder) 
+        Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1)
     
     return StreamNames, Rdf, Hdf, AllWQdf
