@@ -1,0 +1,1297 @@
+1
+          Texas Natural Resource Conservation Commission
+          QUAL-TX model  Version 3.5    Updated November 1999
+
+          Output produced at 09:36 hours on 05/10/2016
+
+
+
+          $$$ DATA TYPE 1 (TITLES AND CONTROL CARDS) $$$
+
+          CARD TYPE       CONTROL TITLES
+
+          CNTROL01        RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+          CNTROL02        SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+          CNTROL03  YES   ECHO DATA INPUT            
+          CNTROL04   NO   INTERMEDIATE SUMMARY       
+          CNTROL05  YES   FINAL REPORT               
+          CNTROL06   NO   LINE PRINTER PLOT          
+          CNTROL07   NO   GRAPHICS CAPABILITY        
+          CNTROL08  YES   METRIC UNITS               
+          CNTROL09  YES   OXYGEN DEPENDENT RATES     
+          CNTROL10   NO   SENSITIVITY ANALYSIS       
+          CNTROL11  YES   SPECIAL REPORT             
+          ENDATA01
+
+
+
+          $$$ DATA TYPE 2 (MODEL OPTIONS) $$$
+
+          CARD TYPE       MODEL OPTION
+
+          MODOPT01   NO   TEMPERATURE                                                        
+          MODOPT02   NO   SALINITY                                                           
+          MODOPT03   NO   CONSERVATIVE MATERIAL  I = CONDUCTIVITY (UMHOS/CM)                 
+          MODOPT04   NO   CONSERVATIVE MATERIAL II = CHLORIDE  (MG/L)                        
+          MODOPT05  YES   DISSOLVED OXYGEN                                                   
+          MODOPT06  YES   BIOCHEMICAL OXYGEN DEMAND                                          
+          MODOPT07  YES   NITROGEN                                                           
+          MODOPT08   NO   PHOSPHORUS                                                         
+          MODOPT09   NO   CHLOROPHYLL A                                                      
+          MODOPT10   NO   MACROPHYTES                                                        
+          MODOPT11   NO   COLIFORM                                                           
+          MODOPT12   NO   NONCONSERVATIVE MATERIAL =                                         
+          ENDATA02
+
+
+
+          $$$ DATA TYPE 3 (PROGRAM CONSTANTS) $$$
+
+          CARD TYPE       DESCRIPTION OF CONSTANT                        VALUE
+
+          PROGRAM         BOD OXYGEN UPTAKE RATE             =         2.30000
+          PROGRAM         MAXIMUM ITERATION LIMIT            =       500.00000
+          PROGRAM         K2 MAXIMUM                         =        10.00000
+          ENDATA03
+
+
+
+          $$$ DATA TYPE 4 (TEMPERATURE CORRECTION CONSTANTS FOR RATE COEFFICIENTS) $$$
+
+          CARD TYPE     RATE CODE     THETA VALUE
+
+          ENDATA04
+
+
+
+          $$$ CONSTANTS TYPE 5 (TEMPERATURE DATA) $$$
+
+          CARD TYPE       DESCRIPTION OF CONSTANT                        VALUE
+
+          ENDATA05
+
+
+
+          $$$ DATA TYPE 6 (ALGAE CONSTANTS) $$$
+
+          CARD TYPE       DESCRIPTION OF CONSTANT                        VALUE
+
+          ENDATA06
+
+
+
+          $$$ DATA TYPE 7 (MACROPHYTE CONSTANTS) $$$
+
+          CARD TYPE       DESCRIPTION OF CONSTANT                        VALUE
+
+          ENDATA07
+
+
+
+          $$$ DATA TYPE 8 (REACH IDENTIFICATION DATA) $$$
+                                                                     BEGIN         END     ELEM    REACH     ELEMS   BEGIN    END
+          CARD TYPE  REACH  ID  NAME                                 REACH       REACH   LENGTH   LENGTH    PER RCH   ELEM   ELEM
+                                                                        KM          KM       KM       KM               NUM    NUM
+
+          REACH ID      1   RG  DISCHARGE 10838-003                  10.00  TO    8.70    .1000     1.30      13        1     13
+          REACH ID      2   RG  RHODAIR GUL TO RHODAIR GUL(PER)       8.70  TO    8.00    .1000      .70       7       14     20
+          REACH ID      3   RG  RHODAIR GUL(PER) TO UNND TRIB 2       8.00  TO    5.40    .1000     2.60      26       21     46
+          REACH ID      4   U2  UNND TRIB 2                           1.60  TO     .00    .1000     1.60      16       47     62
+          REACH ID      5   RG  UNND TRIB 2 TO UNND TRIB 3            5.40  TO    4.00    .1000     1.40      14       63     76
+          REACH ID      6   U3  UNND TRIB 3                            .90  TO     .00    .1000      .90       9       77     85
+          REACH ID      7   RG  UNND TRIB 3 TO PORT ACRES WWTF        4.00  TO     .00    .1000     4.00      40       86    125
+          ENDATA08
+
+
+
+          $$$ DATA TYPE 9 (ADVECTIVE HYDRAULIC COEFFICIENTS) $$$
+
+          CARD TYPE      REACH  ID         VELOCITY       VELOCITY          DEPTH          DEPTH          DEPTH         MANNINGS
+                                              "A"            "B"             "C"            "D"            "E"            "N"
+
+          HYDR-1            1   RG        .69530000           .402           .349           .575           .000           .035
+          HYDR-1            2   RG       1.40200000          1.000           .000           .000           .174           .035
+          HYDR-1            3   RG        .14870000          1.000           .000           .000           .686           .035
+          HYDR-1            4   U2        .13100000           .500           .720           .400           .000           .035
+          HYDR-1            5   RG        .05560000          1.000           .000           .000          1.000           .035
+          HYDR-1            6   U3        .13100000           .500           .720           .400           .000           .035
+          HYDR-1            7   RG        .03800000          1.000           .000           .000          1.000           .035
+          ENDATA09
+
+
+
+          $$$ DATA TYPE 10 (DISPERSIVE HYDRAULIC COEFFICIENTS) $$$
+
+          CARD TYPE      REACH  ID     TIDAL     DISPERSION     DISPERSION     DISPERSION     DISPERSION
+                                       RANGE        "A"            "B"            "C"            "D"
+
+          ENDATA10
+
+
+
+          $$$ DATA TYPE 11 (INITIAL CONDITIONS) $$$
+
+          CARD TYPE      REACH  ID        TEMP     SALIN        DO       NH3     NO3+2      PHOS     CHL A     MACRO
+
+          INITIAL           1   RG       30.50       .00      6.00      1.00      1.00       .00       .00       .00
+          INITIAL           2   RG       30.50       .00      6.00      1.00      1.00       .00       .00       .00
+          INITIAL           3   RG       30.50       .00      6.00      1.00      1.00       .00       .00       .00
+          INITIAL           4   U2       30.50       .00      6.00      1.00      1.00       .00       .00       .00
+          INITIAL           5   RG       30.50       .00      6.00      1.00      1.00       .00       .00       .00
+          INITIAL           6   U3       30.50       .00      6.00      1.00      1.00       .00       .00       .00
+          INITIAL           7   RG       30.50       .00      6.00      1.00      1.00       .00       .00       .00
+          ENDATA11
+
+
+
+          $$$ DATA TYPE 12 (REAERATION, SEDIMENT OXYGEN DEMAND,  BOD COEFFICIENTS) $$$
+                                                                                           AEROB                         ANAER
+          CARD TYPE      REACH  ID          K2        K2        K2        K2     BKGRND      BOD       BOD   BOD CONV      BOD
+                                           OPT       "A"       "B"       "C"       SOD     DECAY      SETT    TO SOD     DECAY
+
+          COEF-1            1   RG         11.      .000      .000      .000      .350      .100      .000     1.000      .000
+          COEF-1            2   RG         11.      .000      .000      .000      .350      .100      .000     1.000      .000
+          COEF-1            3   RG          1.     1.460      .000      .000      .730      .100      .000     1.000      .000
+          COEF-1            4   U2         11.      .000      .000      .000      .350      .100      .000     1.000      .000
+          COEF-1            5   RG          1.     1.000      .000      .000      .700      .100      .000     1.000      .000
+          COEF-1            6   U3         11.      .000      .000      .000      .350      .100      .000     1.000      .000
+          COEF-1            7   RG          1.     1.000      .000      .000      .760      .100      .000     1.000      .000
+          ENDATA12
+
+
+
+          $$$ DATA TYPE 13 (NITROGEN AND PHOSPHORUS COEFFICIENTS) $$$
+
+          CARD TYPE      REACH  ID       ORG-N     ORG-N   ORGN CONV       NH3       NH3      PHOS     DENIT
+                                          DECA      SETT  TO NH3 SRCE     DECA      SRCE      SRCE      RATE
+
+          COEF-2            1   RG         .00       .00      1.00         .30       .00       .00       .00
+          COEF-2            2   RG         .00       .00      1.00         .30       .00       .00       .00
+          COEF-2            3   RG         .00       .00      1.00         .30       .00       .00       .00
+          COEF-2            4   U2         .00       .00      1.00         .30       .00       .00       .00
+          COEF-2            5   RG         .00       .00      1.00         .30       .00       .00       .00
+          COEF-2            6   U3         .00       .00      1.00         .30       .00       .00       .00
+          COEF-2            7   RG         .00       .00      1.00         .30       .00       .00       .00
+          ENDATA13
+
+
+
+          $$$ DATA TYPE 14 (ALGAE AND MACROPHYTE COEFFICIENTS) $$$
+
+          CARD TYPE      REACH  ID       SECCHI    ALGAE:     ALGAE    ALG CONV     ALGAE     ALGAE     MACRO     MACRO
+                                          DEPTH     CHL A      SETT     TO SOD       GROW      RESP      GROW      RESP
+
+          ENDATA14
+
+
+
+          $$$ DATA TYPE 15 (COLIFORM AND NONCONSERVATIVE COEFFICIENTS) $$$
+
+          CARD TYPE      REACH  ID    COLIFORM       NCM       NCM    NCM CONV
+                                       DIE-OFF     DECAY      SETT     TO SOD
+
+          ENDATA15
+
+
+
+          $$$ DATA TYPE 16 (INCREMENTAL DATA FOR FLOW, TEMPERATURE, SALINITY, AND CONSERVATIVES) $$$
+
+          CARD TYPE      REACH  ID          OUTFLOW         INFLOW      TEMP     SALIN      CM-I     CM-II    INFLOW/DIST
+
+          INCR-1            2   RG           .00000         .00850       .00       .00       .00       .00         .01214
+          INCR-1            3   RG           .00000         .07363       .00       .00       .00       .00         .02832
+          ENDATA16
+
+
+
+          $$$ DATA TYPE 17 (INCREMENTAL DATA FOR DO, BOD, AND NITROGEN) $$$
+
+          CARD TYPE      REACH  ID          DO       BOD     ORG-N       NH3     NO3+2
+
+          INCR-2            2   RG        6.00      1.30       .00       .05       .00
+          INCR-2            3   RG        6.00      1.30       .00       .05       .00
+          ENDATA17
+
+
+
+          $$$ DATA TYPE 18 (INCREMENTAL DATA FOR PHOSPHORUS, CHLOROPHYLL, COLIFORM, AND NONCONSERVATIVES) $$$
+
+          CARD TYPE      REACH  ID        PHOS     CHL A      COLI       NCM
+
+          ENDATA18
+
+
+
+          $$$ DATA TYPE 19 (NONPOINT SOURCE DATA) $$$
+
+          CARD TYPE      REACH  ID         BOD     ORG-N      COLI       NCM        DO
+
+          ENDATA19
+
+
+
+          $$$ DATA TYPE 20 (HEADWATER FOR FLOW, TEMPERATURE, SALINITY AND CONSERVATIVES) $$$
+
+          CARD
+          TYPE        ELEMENT     NAME                  UNIT          FLOW      TEMP     SALIN      CM-I     CM-II
+
+          HDWTR-1           1        RHODAIR GULLY        0         .00000      .000      .000      .000      .000
+          HDWTR-1          47        UNND TRIB 2          0         .00000      .000      .000      .000      .000
+          HDWTR-1          77        UNND TRIB 3          0         .00000      .000      .000      .000      .000
+          ENDATA20
+
+
+
+          $$$ DATA TYPE 21 (HEADWATER DATA FOR DO, BOD, AND NITROGEN) $$$
+
+          CARD TYPE     ELEMENT   NAME                          DO       BOD     ORG-N       NH3     NO3+2
+
+          HDWTR-2           1        RHODAIR GULLY            6.00      1.30       .00       .05       .00
+          HDWTR-2          47        UNND TRIB 2              6.00      1.30       .00       .05       .00
+          HDWTR-2          77        UNND TRIB 3              6.00      1.30       .00       .05       .00
+          ENDATA21
+
+
+
+          $$$ DATA TYPE 22 (HEADWATER DATA FOR PHOSPHORUS, CHLOROPHYLL, COLIFORM, AND NONCONSERVATIVES) $$$
+
+          CARD TYPE     ELEMENT   NAME                         PHOS     CHL A      COLI       NCM
+
+          ENDATA22
+
+
+
+          $$$ DATA TYPE 23 (JUNCTION DATA) $$$
+
+          CARD TYPE    JUNCTION   UPSTRM     NAME
+                        ELEMENT  ELEMENT
+
+          JUNCTION          63      46        RHODAIR GULLY/UNND TRIB 2 CONFL                            
+          JUNCTION          86      76        RHODAIR GULLY/UNND TRIB 3 CONFL                            
+          ENDATA23
+
+
+
+          $$$ DATA TYPE 24 (WASTELOAD DATA FOR FLOW, TEMPERATURE, SALINITY, AND CONSERVATIVES) $$$
+
+          CARD TYPE  ELEMENT   NAME                           FLOW      TEMP       SAL      CM-I     CM-II
+
+          WSTLD-1        1     10838-003                    .03287      .000      .000      .000      .000
+          WSTLD-1       14     TBL4 HDWTR                   .00283      .000      .000      .000      .000
+          WSTLD-1       47     01169                        .00000      .000      .000      .000      .000
+          WSTLD-1       77     11249-001                    .00570      .000      .000      .000      .000
+          ENDATA24
+
+
+
+          $$$ DATA TYPE 25 (WASTELOAD DATA FOR DO, BOD, AND NITROGEN) $$$
+
+                                                                                 % BOD                           %
+          CARD TYPE     ELEMENT   NAME                          DO       BOD      RMVL     ORG-N       NH3    NITRIF     NO3+2
+
+          WSTLD-2           1     10838-003                   4.00     10.00       .00       .00      3.00       .00       .00
+          WSTLD-2          14     TBL4 HDWTR                  6.00      1.30       .00       .00       .05       .00       .00
+          WSTLD-2          47     01169                       4.00     10.00       .00       .00      3.00       .00       .00
+          WSTLD-2          77     11249-001                   2.00     20.00       .00       .00     12.00       .00       .00
+          ENDATA25
+
+
+
+          $$$ DATA TYPE 26 (WASTELOAD DATA FOR PHOSPHORUS, CHLOROPHYLL, COLIFORM, AND NONCONSERVATIVES) $$$
+
+          CARD TYPE     ELEMENT   NAME                        PHOS     CHL A      COLI       NCM
+
+          ENDATA26
+
+
+
+          $$$ DATA TYPE 27 (LOWER BOUNDARY CONDITIONS) $$$
+
+          CARD TYPE          CONSTITUENT                    CONCENTRATION
+
+          ENDATA27
+
+
+
+          $$$ DATA TYPE 28 (FLOW AUGMENTATION DATA) $$$
+
+          CARD TYPE        REACH       AVAIL HDWS       TARGET             ORDER OF AVAIL SOURCES
+
+          ENDATA28
+
+
+
+          $$$ DATA TYPE 29 (SENSITIVITY ANALYSIS DATA) $$$
+
+          CARD TYPE       PARAMETER     COL 1     COL 2     COL 3     COL 4     COL 5     COL 6     COL 7     COL 8
+
+          ENDATA29
+
+
+
+          $$$ DATA TYPE 30 (PLOT CONTROL CARDS) $$$
+
+
+          ENDATA30
+
+
+
+          $$$ DATA TYPE 31 (OVERLAY DATAFILE CONTROL CARDS) $$$
+
+
+          ENDATA31
+
+
+
+1
+
+     .....NO ERRORS DETECTED IN INPUT DATA
+
+     .....HYDRAULIC CALCULATIONS COMPLETED
+
+     .....TRIDIAGONAL MATRIX TERMS INITIALIZED
+
+     .....OXYGEN DEPENDENT RATES CONVERGENT IN  14 ITERATIONS
+
+     .....CONSTITUENT CALCULATIONS COMPLETED
+
+
+ SPECIAL REPORT:    RHODAIR GULLY    
+ WATER QUALITY CONSTITUENT VALUES 
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+   1    9.900  30.50    .0       .0       .0   4.10   9.99   9.99    .00   2.99    .01   3.00    .00     .0      .0       0.     .00
+   2    9.800  30.50    .0       .0       .0   4.18   9.98   9.98    .00   2.98    .02   3.00    .00     .0      .0       0.     .00
+   3    9.700  30.50    .0       .0       .0   4.27   9.97   9.97    .00   2.96    .04   3.00    .00     .0      .0       0.     .00
+   4    9.600  30.50    .0       .0       .0   4.34   9.96   9.96    .00   2.95    .05   3.00    .00     .0      .0       0.     .00
+   5    9.500  30.50    .0       .0       .0   4.41   9.95   9.95    .00   2.94    .06   3.00    .00     .0      .0       0.     .00
+   6    9.400  30.50    .0       .0       .0   4.48   9.94   9.94    .00   2.93    .07   3.00    .00     .0      .0       0.     .00
+   7    9.300  30.50    .0       .0       .0   4.54   9.93   9.93    .00   2.92    .08   3.00    .00     .0      .0       0.     .00
+   8    9.200  30.50    .0       .0       .0   4.59   9.92   9.92    .00   2.91    .09   3.00    .00     .0      .0       0.     .00
+   9    9.100  30.50    .0       .0       .0   4.65   9.90   9.90    .00   2.89    .11   3.00    .00     .0      .0       0.     .00
+  10    9.000  30.50    .0       .0       .0   4.69   9.89   9.89    .00   2.88    .12   3.00    .00     .0      .0       0.     .00
+  11    8.900  30.50    .0       .0       .0   4.74   9.88   9.88    .00   2.87    .13   3.00    .00     .0      .0       0.     .00
+  12    8.800  30.50    .0       .0       .0   4.78   9.87   9.87    .00   2.86    .14   3.00    .00     .0      .0       0.     .00
+  13    8.700  30.50    .0       .0       .0   4.82   9.86   9.86    .00   2.85    .15   3.00    .00     .0      .0       0.     .00
+  14    8.600  30.50    .0       .0       .0   4.91   8.89   8.89    .00   2.50    .17   2.68    .00     .0      .0       0.     .00
+  15    8.500  30.50    .0       .0       .0   4.92   8.62   8.62    .00   2.39    .20   2.59    .00     .0      .0       0.     .00
+  16    8.400  30.50    .0       .0       .0   4.94   8.37   8.37    .00   2.29    .22   2.51    .00     .0      .0       0.     .00
+  17    8.300  30.50    .0       .0       .0   4.96   8.13   8.13    .00   2.20    .25   2.44    .00     .0      .0       0.     .00
+  18    8.200  30.50    .0       .0       .0   4.99   7.90   7.90    .00   2.11    .26   2.37    .00     .0      .0       0.     .00
+  19    8.100  30.50    .0       .0       .0   5.02   7.69   7.69    .00   2.02    .28   2.31    .00     .0      .0       0.     .00
+  20    8.000  30.50    .0       .0       .0   5.05   7.49   7.49    .00   1.95    .30   2.24    .00     .0      .0       0.     .00
+  21    7.900  30.50    .0       .0       .0   4.46   6.93   6.93    .00   1.66    .45   2.11    .00     .0      .0       0.     .00
+  22    7.800  30.50    .0       .0       .0   4.16   6.45   6.45    .00   1.43    .56   1.99    .00     .0      .0       0.     .00
+  23    7.700  30.50    .0       .0       .0   4.02   6.03   6.03    .00   1.25    .64   1.89    .00     .0      .0       0.     .00
+  24    7.600  30.50    .0       .0       .0   3.99   5.66   5.66    .00   1.10    .70   1.80    .00     .0      .0       0.     .00
+  25    7.500  30.50    .0       .0       .0   4.01   5.33   5.33    .00    .97    .74   1.71    .00     .0      .0       0.     .00
+  26    7.400  30.50    .0       .0       .0   4.06   5.04   5.04    .00    .86    .77   1.63    .00     .0      .0       0.     .00
+  27    7.300  30.50    .0       .0       .0   4.14   4.78   4.78    .00    .77    .80   1.56    .00     .0      .0       0.     .00
+  28    7.200  30.50    .0       .0       .0   4.22   4.55   4.55    .00    .69    .81   1.50    .00     .0      .0       0.     .00
+  29    7.100  30.50    .0       .0       .0   4.31   4.34   4.34    .00    .62    .82   1.44    .00     .0      .0       0.     .00
+  30    7.000  30.50    .0       .0       .0   4.39   4.15   4.15    .00    .56    .83   1.39    .00     .0      .0       0.     .00
+  31    6.900  30.50    .0       .0       .0   4.48   3.98   3.98    .00    .51    .83   1.34    .00     .0      .0       0.     .00
+  32    6.800  30.50    .0       .0       .0   4.56   3.82   3.82    .00    .46    .83   1.29    .00     .0      .0       0.     .00
+  33    6.700  30.50    .0       .0       .0   4.64   3.67   3.67    .00    .42    .82   1.25    .00     .0      .0       0.     .00
+  34    6.600  30.50    .0       .0       .0   4.71   3.54   3.54    .00    .39    .82   1.21    .00     .0      .0       0.     .00
+  35    6.500  30.50    .0       .0       .0   4.78   3.42   3.42    .00    .36    .81   1.17    .00     .0      .0       0.     .00
+  36    6.400  30.50    .0       .0       .0   4.85   3.30   3.30    .00    .33    .80   1.13    .00     .0      .0       0.     .00
+  37    6.300  30.50    .0       .0       .0   4.91   3.20   3.20    .00    .31    .79   1.10    .00     .0      .0       0.     .00
+  38    6.200  30.50    .0       .0       .0   4.97   3.10   3.10    .00    .28    .79   1.07    .00     .0      .0       0.     .00
+  39    6.100  30.50    .0       .0       .0   5.02   3.01   3.01    .00    .26    .78   1.04    .00     .0      .0       0.     .00
+  40    6.000  30.50    .0       .0       .0   5.07   2.92   2.92    .00    .25    .77   1.01    .00     .0      .0       0.     .00
+  41    5.900  30.50    .0       .0       .0   5.11   2.85   2.85    .00    .23    .76    .99    .00     .0      .0       0.     .00
+  42    5.800  30.50    .0       .0       .0   5.16   2.77   2.77    .00    .21    .75    .96    .00     .0      .0       0.     .00
+  43    5.700  30.50    .0       .0       .0   5.20   2.70   2.70    .00    .20    .74    .94    .00     .0      .0       0.     .00
+  44    5.600  30.50    .0       .0       .0   5.23   2.64   2.64    .00    .19    .73    .91    .00     .0      .0       0.     .00
+  45    5.500  30.50    .0       .0       .0   5.27   2.58   2.58    .00    .18    .72    .89    .00     .0      .0       0.     .00
+  46    5.400  30.50    .0       .0       .0   5.30   2.52   2.52    .00    .17    .71    .87    .00     .0      .0       0.     .00
+  63    5.300  30.50    .0       .0       .0   5.28   2.45   2.45    .00    .15    .72    .87    .00     .0      .0       0.     .00
+  64    5.200  30.50    .0       .0       .0   5.27   2.38   2.38    .00    .13    .74    .87    .00     .0      .0       0.     .00
+  65    5.100  30.50    .0       .0       .0   5.27   2.31   2.31    .00    .12    .75    .87    .00     .0      .0       0.     .00
+  66    5.000  30.50    .0       .0       .0   5.28   2.25   2.25    .00    .11    .76    .87    .00     .0      .0       0.     .00
+  67    4.900  30.50    .0       .0       .0   5.30   2.19   2.19    .00    .10    .78    .87    .00     .0      .0       0.     .00
+  68    4.800  30.50    .0       .0       .0   5.32   2.13   2.13    .00    .09    .79    .87    .00     .0      .0       0.     .00
+  69    4.700  30.50    .0       .0       .0   5.35   2.07   2.07    .00    .08    .79    .87    .00     .0      .0       0.     .00
+  70    4.600  30.50    .0       .0       .0   5.37   2.01   2.01    .00    .07    .80    .87    .00     .0      .0       0.     .00
+  71    4.500  30.50    .0       .0       .0   5.40   1.95   1.95    .00    .06    .81    .87    .00     .0      .0       0.     .00
+  72    4.400  30.50    .0       .0       .0   5.43   1.90   1.90    .00    .06    .82    .87    .00     .0      .0       0.     .00
+  73    4.300  30.50    .0       .0       .0   5.46   1.85   1.85    .00    .05    .82    .87    .00     .0      .0       0.     .00
+  74    4.200  30.50    .0       .0       .0   5.48   1.80   1.80    .00    .05    .83    .87    .00     .0      .0       0.     .00
+  75    4.100  30.50    .0       .0       .0   5.51   1.75   1.75    .00    .04    .83    .87    .00     .0      .0       0.     .00
+  76    4.000  30.50    .0       .0       .0   5.54   1.70   1.70    .00    .04    .84    .88    .00     .0      .0       0.     .00
+  86    3.900  30.50    .0       .0       .0   5.28   2.31   2.31    .00    .31   1.08   1.39    .00     .0      .0       0.     .00
+  87    3.800  30.50    .0       .0       .0   5.19   2.22   2.22    .00    .27   1.12   1.39    .00     .0      .0       0.     .00
+  88    3.700  30.50    .0       .0       .0   5.14   2.13   2.13    .00    .23   1.16   1.39    .00     .0      .0       0.     .00
+  89    3.600  30.50    .0       .0       .0   5.13   2.05   2.05    .00    .20   1.19   1.39    .00     .0      .0       0.     .00
+  90    3.500  30.50    .0       .0       .0   5.14   1.97   1.97    .00    .17   1.22   1.39    .00     .0      .0       0.     .00
+  91    3.400  30.50    .0       .0       .0   5.17   1.90   1.90    .00    .15   1.24   1.39    .00     .0      .0       0.     .00
+  92    3.300  30.50    .0       .0       .0   5.20   1.82   1.82    .00    .13   1.26   1.39    .00     .0      .0       0.     .00
+  93    3.200  30.50    .0       .0       .0   5.24   1.75   1.75    .00    .11   1.28   1.39    .00     .0      .0       0.     .00
+  94    3.100  30.50    .0       .0       .0   5.29   1.69   1.69    .00    .10   1.29   1.39    .00     .0      .0       0.     .00
+  95    3.000  30.50    .0       .0       .0   5.33   1.62   1.62    .00    .08   1.30   1.39    .00     .0      .0       0.     .00
+  96    2.900  30.50    .0       .0       .0   5.38   1.56   1.56    .00    .07   1.32   1.39    .00     .0      .0       0.     .00
+  97    2.800  30.50    .0       .0       .0   5.42   1.50   1.50    .00    .06   1.33   1.39    .00     .0      .0       0.     .00
+  98    2.700  30.50    .0       .0       .0   5.46   1.44   1.44    .00    .05   1.33   1.39    .00     .0      .0       0.     .00
+  99    2.600  30.50    .0       .0       .0   5.50   1.39   1.39    .00    .05   1.34   1.39    .00     .0      .0       0.     .00
+ 100    2.500  30.50    .0       .0       .0   5.54   1.33   1.33    .00    .04   1.35   1.39    .00     .0      .0       0.     .00
+ 101    2.400  30.50    .0       .0       .0   5.58   1.28   1.28    .00    .03   1.35   1.39    .00     .0      .0       0.     .00
+ 102    2.300  30.50    .0       .0       .0   5.61   1.23   1.23    .00    .03   1.36   1.39    .00     .0      .0       0.     .00
+ 103    2.200  30.50    .0       .0       .0   5.64   1.19   1.19    .00    .03   1.36   1.39    .00     .0      .0       0.     .00
+ 104    2.100  30.50    .0       .0       .0   5.67   1.14   1.14    .00    .02   1.36   1.39    .00     .0      .0       0.     .00
+ 105    2.000  30.50    .0       .0       .0   5.70   1.10   1.10    .00    .02   1.37   1.39    .00     .0      .0       0.     .00
+ 106    1.900  30.50    .0       .0       .0   5.72   1.05   1.05    .00    .02   1.37   1.39    .00     .0      .0       0.     .00
+ 107    1.800  30.50    .0       .0       .0   5.75   1.01   1.01    .00    .01   1.37   1.39    .00     .0      .0       0.     .00
+ 108    1.700  30.50    .0       .0       .0   5.77    .97    .97    .00    .01   1.37   1.39    .00     .0      .0       0.     .00
+ 109    1.600  30.50    .0       .0       .0   5.79    .94    .94    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 110    1.500  30.50    .0       .0       .0   5.81    .90    .90    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 111    1.400  30.50    .0       .0       .0   5.83    .87    .87    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 112    1.300  30.50    .0       .0       .0   5.84    .83    .83    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 113    1.200  30.50    .0       .0       .0   5.86    .80    .80    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 114    1.100  30.50    .0       .0       .0   5.87    .77    .77    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 115    1.000  30.50    .0       .0       .0   5.89    .74    .74    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 116     .900  30.50    .0       .0       .0   5.90    .71    .71    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 117     .800  30.50    .0       .0       .0   5.91    .69    .69    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 118     .700  30.50    .0       .0       .0   5.92    .66    .66    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 119     .600  30.50    .0       .0       .0   5.93    .63    .63    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 120     .500  30.50    .0       .0       .0   5.94    .61    .61    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 121     .400  30.50    .0       .0       .0   5.95    .59    .59    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 122     .300  30.50    .0       .0       .0   5.96    .56    .56    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 123     .200  30.50    .0       .0       .0   5.97    .54    .54    .00    .00   1.39   1.39    .00     .0      .0       0.     .00
+ 124     .100  30.50    .0       .0       .0   5.98    .52    .52    .00    .00   1.39   1.39    .00     .0      .0       0.     .00
+ 125     .000  30.50    .0       .0       .0   5.98    .49    .49    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+
+
+ SPECIAL REPORT:    UNND TRIB 2      
+ WATER QUALITY CONSTITUENT VALUES 
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  47    1.500  30.50    .0       .0       .0   1.85    .25    .25    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  48    1.400  30.50    .0       .0       .0   1.85    .05    .05    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  49    1.300  30.50    .0       .0       .0   1.85    .01    .01    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  50    1.200  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  51    1.100  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  52    1.000  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  53     .900  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  54     .800  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  55     .700  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  56     .600  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  57     .500  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  58     .400  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  59     .300  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  60     .200  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  61     .100  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  62     .000  30.50    .0       .0       .0   1.85    .55    .55    .00    .02    .53    .54    .00     .0      .0       0.     .00
+
+
+ SPECIAL REPORT:    UNND TRIB 3      
+ WATER QUALITY CONSTITUENT VALUES 
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  77     .800  30.50    .0       .0       .0   2.26  19.63  19.63    .00  11.35    .65  12.00    .00     .0      .0       0.     .00
+  78     .700  30.50    .0       .0       .0   2.44  19.26  19.26    .00  10.71   1.29  12.00    .00     .0      .0       0.     .00
+  79     .600  30.50    .0       .0       .0   2.59  18.90  18.90    .00  10.10   1.90  12.00    .00     .0      .0       0.     .00
+  80     .500  30.50    .0       .0       .0   2.73  18.55  18.55    .00   9.51   2.49  12.00    .00     .0      .0       0.     .00
+  81     .400  30.50    .0       .0       .0   2.87  18.21  18.21    .00   8.94   3.06  12.00    .00     .0      .0       0.     .00
+  82     .300  30.50    .0       .0       .0   3.00  17.87  17.87    .00   8.40   3.60  12.00    .00     .0      .0       0.     .00
+  83     .200  30.50    .0       .0       .0   3.14  17.54  17.54    .00   7.89   4.11  12.00    .00     .0      .0       0.     .00
+  84     .100  30.50    .0       .0       .0   3.27  17.21  17.21    .00   7.40   4.60  12.00    .00     .0      .0       0.     .00
+  85     .000  30.50    .0       .0       .0   3.50  16.19  16.19    .00   6.63   4.85  11.48    .00     .0      .0       0.     .00
+1
+ FINAL REPORT       RHODAIR GULLY                                 RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+ REACH NO.  1    DISCHARGE 10838-003                              SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ ********************************************************** REACH INPUTS ***********************************************************
+
+ ELEM  TYPE         FLOW    TEMP     SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   PHOS  CHL A     COLI     NCM
+ NO.                 CMS   DEG C      PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L    #/100ML    *
+
+   1   HDWTR       .0000     .00      .00       .0       .0   6.00   1.30   1.30    .00    .05    .00    .00     .0       0.     .00
+   1   WSTLD       .0329     .00      .00       .0       .0   4.00  10.00  10.00    .00   3.00    .00    .00     .0       0.     .00
+
+
+ *************************************************** HYDRAULIC PARAMETER VALUES ****************************************************
+
+ ELEM   BEGIN  ENDING       FLOW   PCT   ADVCTV  TRAVEL   DEPTH  WIDTH   VOLUME    SURFACE  X-SECT     TIDAL  TIDAL   DISPRSN   MEAN
+  NO.    DIST    DIST              EFF    VELO    TIME                               AREA    AREA      PRISM   VELO             VELO
+          KM      KM         CMS           M/S    DAYS      M      M      CU M       SQ M    SQ M      CU M    M/S    SQ M/S    M/S
+
+    1   10.00    9.90      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    2    9.90    9.80      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    3    9.80    9.70      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    4    9.70    9.60      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    5    9.60    9.50      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    6    9.50    9.40      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    7    9.40    9.30      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    8    9.30    9.20      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+    9    9.20    9.10      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+   10    9.10    9.00      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+   11    9.00    8.90      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+   12    8.90    8.80      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+   13    8.80    8.70      .0329  100.0   .176      .01    .05    3.8       19.      381.2      .2        0.   .000      .009   .176
+
+  TOT                                               .09                    243.     4955.4
+  AVG                                     .176             .05    3.8                           .2
+  CUM                                               .09
+
+
+ ********************************************** BIOLOGICAL AND PHYSICAL COEFFICIENTS ***********************************************
+
+ ELEM  ENDING  SAT    REAER   CBOD  CBOD  ANBOD  FULL  CORR   ORGN  ORGN    NH3   NH3  DENIT   PO4   ALG   MAC   COLI    NCM   NCM
+ NO.     DIST  D.O.    RATE  DECAY  SETT  DECAY   SOD   SOD  DECAY  SETT  DECAY  SRCE   RATE  SRCE  PROD  PROD  DECAY  DECAY  SETT
+               MG/L    1/DA   1/DA  1/DA   1/DA    *     *    1/DA  1/DA   1/DA    *    1/DA    *    **    **    1/DA   1/DA  1/DA
+
+   1    9.900  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .60   .00    .00   .00   .00   .00    .00    .00   .00
+   2    9.800  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+   3    9.700  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+   4    9.600  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+   5    9.500  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+   6    9.400  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+   7    9.300  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+   8    9.200  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+   9    9.100  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+  10    9.000  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+  11    8.900  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  12    8.800  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  13    8.700  7.49   12.13    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+
+ 20 DEG C RATE                 .10          .00         .35    .00          .30   .00    .00   .00                .00    .00
+ AVG 20 DEG C RATE    10.00          .00                             .00                                                       .00
+
+ * G/SQ M/D            ** MG/L/DAY  
+
+
+ ************************************************ WATER QUALITY CONSTITUENT VALUES *************************************************
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+   1    9.900  30.50    .0       .0       .0   4.10   9.99   9.99    .00   2.99    .01   3.00    .00     .0      .0       0.     .00
+   2    9.800  30.50    .0       .0       .0   4.18   9.98   9.98    .00   2.98    .02   3.00    .00     .0      .0       0.     .00
+   3    9.700  30.50    .0       .0       .0   4.27   9.97   9.97    .00   2.96    .04   3.00    .00     .0      .0       0.     .00
+   4    9.600  30.50    .0       .0       .0   4.34   9.96   9.96    .00   2.95    .05   3.00    .00     .0      .0       0.     .00
+   5    9.500  30.50    .0       .0       .0   4.41   9.95   9.95    .00   2.94    .06   3.00    .00     .0      .0       0.     .00
+   6    9.400  30.50    .0       .0       .0   4.48   9.94   9.94    .00   2.93    .07   3.00    .00     .0      .0       0.     .00
+   7    9.300  30.50    .0       .0       .0   4.54   9.93   9.93    .00   2.92    .08   3.00    .00     .0      .0       0.     .00
+   8    9.200  30.50    .0       .0       .0   4.59   9.92   9.92    .00   2.91    .09   3.00    .00     .0      .0       0.     .00
+   9    9.100  30.50    .0       .0       .0   4.65   9.90   9.90    .00   2.89    .11   3.00    .00     .0      .0       0.     .00
+  10    9.000  30.50    .0       .0       .0   4.69   9.89   9.89    .00   2.88    .12   3.00    .00     .0      .0       0.     .00
+  11    8.900  30.50    .0       .0       .0   4.74   9.88   9.88    .00   2.87    .13   3.00    .00     .0      .0       0.     .00
+  12    8.800  30.50    .0       .0       .0   4.78   9.87   9.87    .00   2.86    .14   3.00    .00     .0      .0       0.     .00
+  13    8.700  30.50    .0       .0       .0   4.82   9.86   9.86    .00   2.85    .15   3.00    .00     .0      .0       0.     .00
+
+ * CM-I = CONDUCTIVITY (UMHOS/CM)           CM-II = CHLORIDE  (MG/L)                  NCM =                           
+                                                                                                      
+ ** G/CU M    
+1
+ FINAL REPORT       RHODAIR GULLY                                 RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+ REACH NO.  2    RHODAIR GUL TO RHODAIR GUL(PER)                  SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ ********************************************************** REACH INPUTS ***********************************************************
+
+ ELEM  TYPE         FLOW    TEMP     SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   PHOS  CHL A     COLI     NCM
+ NO.                 CMS   DEG C      PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L    #/100ML    *
+
+  14   UPR RCH     .0329   30.50      .00       .0       .0   4.82   9.86   9.86    .00   2.85    .15    .00     .0       0.     .00
+ EACH  INCR        .0012     .00      .00       .0       .0   6.00   1.30   1.30    .00    .05    .00    .00              0.     .00
+  14   WSTLD       .0028     .00      .00       .0       .0   6.00   1.30   1.30    .00    .05    .00    .00     .0       0.     .00
+
+
+ *************************************************** HYDRAULIC PARAMETER VALUES ****************************************************
+
+ ELEM   BEGIN  ENDING       FLOW   PCT   ADVCTV  TRAVEL   DEPTH  WIDTH   VOLUME    SURFACE  X-SECT     TIDAL  TIDAL   DISPRSN   MEAN
+  NO.    DIST    DIST              EFF    VELO    TIME                               AREA    AREA      PRISM   VELO             VELO
+          KM      KM         CMS           M/S    DAYS      M      M      CU M       SQ M    SQ M      CU M    M/S    SQ M/S    M/S
+
+   14    8.70    8.60      .0369   96.7   .052      .02    .17    4.1       71.      409.9      .7        0.   .000      .008   .052
+   15    8.60    8.50      .0381   93.6   .053      .02    .17    4.1       71.      409.9      .7        0.   .000      .008   .053
+   16    8.50    8.40      .0393   90.7   .055      .02    .17    4.1       71.      409.9      .7        0.   .000      .008   .055
+   17    8.40    8.30      .0406   88.0   .057      .02    .17    4.1       71.      409.9      .7        0.   .000      .009   .057
+   18    8.30    8.20      .0418   85.5   .059      .02    .17    4.1       71.      409.9      .7        0.   .000      .009   .059
+   19    8.20    8.10      .0430   83.1   .060      .02    .17    4.1       71.      409.9      .7        0.   .000      .009   .060
+   20    8.10    8.00      .0442   80.8   .062      .02    .17    4.1       71.      409.9      .7        0.   .000      .009   .062
+
+  TOT                                               .14                    499.     2869.5
+  AVG                                     .057             .17    4.1                           .7
+  CUM                                               .23
+
+
+ ********************************************** BIOLOGICAL AND PHYSICAL COEFFICIENTS ***********************************************
+
+ ELEM  ENDING  SAT    REAER   CBOD  CBOD  ANBOD  FULL  CORR   ORGN  ORGN    NH3   NH3  DENIT   PO4   ALG   MAC   COLI    NCM   NCM
+ NO.     DIST  D.O.    RATE  DECAY  SETT  DECAY   SOD   SOD  DECAY  SETT  DECAY  SRCE   RATE  SRCE  PROD  PROD  DECAY  DECAY  SETT
+               MG/L    1/DA   1/DA  1/DA   1/DA    *     *    1/DA  1/DA   1/DA    *    1/DA    *    **    **    1/DA   1/DA  1/DA
+
+  14    8.600  7.49    4.96    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  15    8.500  7.49    5.01    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  16    8.400  7.49    5.05    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  17    8.300  7.49    5.09    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  18    8.200  7.49    5.13    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  19    8.100  7.49    5.17    .16   .00    .00   .74   .74    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  20    8.000  7.49    5.21    .16   .00    .00   .74   .74    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+
+ 20 DEG C RATE                 .10          .00         .35    .00          .30   .00    .00   .00                .00    .00
+ AVG 20 DEG C RATE     4.20          .00                             .00                                                       .00
+
+ * G/SQ M/D            ** MG/L/DAY  
+
+
+ ************************************************ WATER QUALITY CONSTITUENT VALUES *************************************************
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  14    8.600  30.50    .0       .0       .0   4.91   8.89   8.89    .00   2.50    .17   2.68    .00     .0      .0       0.     .00
+  15    8.500  30.50    .0       .0       .0   4.92   8.62   8.62    .00   2.39    .20   2.59    .00     .0      .0       0.     .00
+  16    8.400  30.50    .0       .0       .0   4.94   8.37   8.37    .00   2.29    .22   2.51    .00     .0      .0       0.     .00
+  17    8.300  30.50    .0       .0       .0   4.96   8.13   8.13    .00   2.20    .25   2.44    .00     .0      .0       0.     .00
+  18    8.200  30.50    .0       .0       .0   4.99   7.90   7.90    .00   2.11    .26   2.37    .00     .0      .0       0.     .00
+  19    8.100  30.50    .0       .0       .0   5.02   7.69   7.69    .00   2.02    .28   2.31    .00     .0      .0       0.     .00
+  20    8.000  30.50    .0       .0       .0   5.05   7.49   7.49    .00   1.95    .30   2.24    .00     .0      .0       0.     .00
+
+ * CM-I = CONDUCTIVITY (UMHOS/CM)           CM-II = CHLORIDE  (MG/L)                  NCM =                           
+                                                                                                      
+ ** G/CU M    
+1
+ FINAL REPORT       RHODAIR GULLY                                 RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+ REACH NO.  3    RHODAIR GUL(PER) TO UNND TRIB 2                  SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ ********************************************************** REACH INPUTS ***********************************************************
+
+ ELEM  TYPE         FLOW    TEMP     SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   PHOS  CHL A     COLI     NCM
+ NO.                 CMS   DEG C      PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L    #/100ML    *
+
+  21   UPR RCH     .0442   30.50      .00       .0       .0   5.05   7.49   7.49    .00   1.95    .30    .00     .0       0.     .00
+ EACH  INCR        .0028     .00      .00       .0       .0   6.00   1.30   1.30    .00    .05    .00    .00              0.     .00
+
+
+ *************************************************** HYDRAULIC PARAMETER VALUES ****************************************************
+
+ ELEM   BEGIN  ENDING       FLOW   PCT   ADVCTV  TRAVEL   DEPTH  WIDTH   VOLUME    SURFACE  X-SECT     TIDAL  TIDAL   DISPRSN   MEAN
+  NO.    DIST    DIST              EFF    VELO    TIME                               AREA    AREA      PRISM   VELO             VELO
+          KM      KM         CMS           M/S    DAYS      M      M      CU M       SQ M    SQ M      CU M    M/S    SQ M/S    M/S
+
+   21    8.00    7.90      .0470   75.9   .007      .17    .69    9.8      672.      980.3     6.7        0.   .000      .003   .007
+   22    7.90    7.80      .0499   71.6   .007      .16    .69    9.8      672.      980.3     6.7        0.   .000      .004   .007
+   23    7.80    7.70      .0527   67.7   .008      .15    .69    9.8      672.      980.3     6.7        0.   .000      .004   .008
+   24    7.70    7.60      .0555   64.3   .008      .14    .69    9.8      672.      980.3     6.7        0.   .000      .004   .008
+   25    7.60    7.50      .0584   61.2   .009      .13    .69    9.8      672.      980.3     6.7        0.   .000      .004   .009
+   26    7.50    7.40      .0612   58.3   .009      .13    .69    9.8      672.      980.3     6.7        0.   .000      .004   .009
+   27    7.40    7.30      .0640   55.8   .010      .12    .69    9.8      672.      980.3     6.7        0.   .000      .005   .010
+   28    7.30    7.20      .0669   53.4   .010      .12    .69    9.8      672.      980.3     6.7        0.   .000      .005   .010
+   29    7.20    7.10      .0697   51.2   .010      .11    .69    9.8      672.      980.3     6.7        0.   .000      .005   .010
+   30    7.10    7.00      .0725   49.2   .011      .11    .69    9.8      672.      980.3     6.7        0.   .000      .005   .011
+   31    7.00    6.90      .0754   47.4   .011      .10    .69    9.8      672.      980.3     6.7        0.   .000      .005   .011
+   32    6.90    6.80      .0782   45.7   .012      .10    .69    9.8      672.      980.3     6.7        0.   .000      .006   .012
+   33    6.80    6.70      .0810   44.1   .012      .10    .69    9.8      672.      980.3     6.7        0.   .000      .006   .012
+   34    6.70    6.60      .0838   42.6   .012      .09    .69    9.8      672.      980.3     6.7        0.   .000      .006   .012
+   35    6.60    6.50      .0867   41.2   .013      .09    .69    9.8      672.      980.3     6.7        0.   .000      .006   .013
+   36    6.50    6.40      .0895   39.9   .013      .09    .69    9.8      672.      980.3     6.7        0.   .000      .006   .013
+   37    6.40    6.30      .0923   38.7   .014      .08    .69    9.8      672.      980.3     6.7        0.   .000      .007   .014
+   38    6.30    6.20      .0952   37.5   .014      .08    .69    9.8      672.      980.3     6.7        0.   .000      .007   .014
+   39    6.20    6.10      .0980   36.4   .015      .08    .69    9.8      672.      980.3     6.7        0.   .000      .007   .015
+   40    6.10    6.00      .1008   35.4   .015      .08    .69    9.8      672.      980.3     6.7        0.   .000      .007   .015
+   41    6.00    5.90      .1037   34.4   .015      .08    .69    9.8      672.      980.3     6.7        0.   .000      .007   .015
+   42    5.90    5.80      .1065   33.5   .016      .07    .69    9.8      672.      980.3     6.7        0.   .000      .008   .016
+   43    5.80    5.70      .1093   32.7   .016      .07    .69    9.8      672.      980.3     6.7        0.   .000      .008   .016
+   44    5.70    5.60      .1122   31.8   .017      .07    .69    9.8      672.      980.3     6.7        0.   .000      .008   .017
+   45    5.60    5.50      .1150   31.0   .017      .07    .69    9.8      672.      980.3     6.7        0.   .000      .008   .017
+   46    5.50    5.40      .1178   30.3   .018      .07    .69    9.8      672.      980.3     6.7        0.   .000      .008   .018
+
+  TOT                                              2.64                  17485.    25488.1
+  AVG                                     .011             .69    9.8                          6.7
+  CUM                                              2.87
+
+
+ ********************************************** BIOLOGICAL AND PHYSICAL COEFFICIENTS ***********************************************
+
+ ELEM  ENDING  SAT    REAER   CBOD  CBOD  ANBOD  FULL  CORR   ORGN  ORGN    NH3   NH3  DENIT   PO4   ALG   MAC   COLI    NCM   NCM
+ NO.     DIST  D.O.    RATE  DECAY  SETT  DECAY   SOD   SOD  DECAY  SETT  DECAY  SRCE   RATE  SRCE  PROD  PROD  DECAY  DECAY  SETT
+               MG/L    1/DA   1/DA  1/DA   1/DA    *     *    1/DA  1/DA   1/DA    *    1/DA    *    **    **    1/DA   1/DA  1/DA
+
+  21    7.900  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+  22    7.800  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+  23    7.700  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .60   .00    .00   .00   .00   .00    .00    .00   .00
+  24    7.600  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .60   .00    .00   .00   .00   .00    .00    .00   .00
+  25    7.500  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .60   .00    .00   .00   .00   .00    .00    .00   .00
+  26    7.400  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .60   .00    .00   .00   .00   .00    .00    .00   .00
+  27    7.300  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .60   .00    .00   .00   .00   .00    .00    .00   .00
+  28    7.200  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+  29    7.100  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+  30    7.000  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .61   .00    .00   .00   .00   .00    .00    .00   .00
+  31    6.900  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+  32    6.800  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+  33    6.700  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .62   .00    .00   .00   .00   .00    .00    .00   .00
+  34    6.600  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  35    6.500  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  36    6.400  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  37    6.300  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  38    6.200  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  39    6.100  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .63   .00    .00   .00   .00   .00    .00    .00   .00
+  40    6.000  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  41    5.900  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  42    5.800  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  43    5.700  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  44    5.600  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  45    5.500  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  46    5.400  7.49    1.77    .16   .00    .00  1.54  1.54    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+
+ 20 DEG C RATE                 .10          .00         .73    .00          .30   .00    .00   .00                .00    .00
+ AVG 20 DEG C RATE     1.46          .00                             .00                                                       .00
+
+ * G/SQ M/D            ** MG/L/DAY  
+
+
+ ************************************************ WATER QUALITY CONSTITUENT VALUES *************************************************
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  21    7.900  30.50    .0       .0       .0   4.46   6.93   6.93    .00   1.66    .45   2.11    .00     .0      .0       0.     .00
+  22    7.800  30.50    .0       .0       .0   4.16   6.45   6.45    .00   1.43    .56   1.99    .00     .0      .0       0.     .00
+  23    7.700  30.50    .0       .0       .0   4.02   6.03   6.03    .00   1.25    .64   1.89    .00     .0      .0       0.     .00
+  24    7.600  30.50    .0       .0       .0   3.99   5.66   5.66    .00   1.10    .70   1.80    .00     .0      .0       0.     .00
+  25    7.500  30.50    .0       .0       .0   4.01   5.33   5.33    .00    .97    .74   1.71    .00     .0      .0       0.     .00
+  26    7.400  30.50    .0       .0       .0   4.06   5.04   5.04    .00    .86    .77   1.63    .00     .0      .0       0.     .00
+  27    7.300  30.50    .0       .0       .0   4.14   4.78   4.78    .00    .77    .80   1.56    .00     .0      .0       0.     .00
+  28    7.200  30.50    .0       .0       .0   4.22   4.55   4.55    .00    .69    .81   1.50    .00     .0      .0       0.     .00
+  29    7.100  30.50    .0       .0       .0   4.31   4.34   4.34    .00    .62    .82   1.44    .00     .0      .0       0.     .00
+  30    7.000  30.50    .0       .0       .0   4.39   4.15   4.15    .00    .56    .83   1.39    .00     .0      .0       0.     .00
+  31    6.900  30.50    .0       .0       .0   4.48   3.98   3.98    .00    .51    .83   1.34    .00     .0      .0       0.     .00
+  32    6.800  30.50    .0       .0       .0   4.56   3.82   3.82    .00    .46    .83   1.29    .00     .0      .0       0.     .00
+  33    6.700  30.50    .0       .0       .0   4.64   3.67   3.67    .00    .42    .82   1.25    .00     .0      .0       0.     .00
+  34    6.600  30.50    .0       .0       .0   4.71   3.54   3.54    .00    .39    .82   1.21    .00     .0      .0       0.     .00
+  35    6.500  30.50    .0       .0       .0   4.78   3.42   3.42    .00    .36    .81   1.17    .00     .0      .0       0.     .00
+  36    6.400  30.50    .0       .0       .0   4.85   3.30   3.30    .00    .33    .80   1.13    .00     .0      .0       0.     .00
+  37    6.300  30.50    .0       .0       .0   4.91   3.20   3.20    .00    .31    .79   1.10    .00     .0      .0       0.     .00
+  38    6.200  30.50    .0       .0       .0   4.97   3.10   3.10    .00    .28    .79   1.07    .00     .0      .0       0.     .00
+  39    6.100  30.50    .0       .0       .0   5.02   3.01   3.01    .00    .26    .78   1.04    .00     .0      .0       0.     .00
+  40    6.000  30.50    .0       .0       .0   5.07   2.92   2.92    .00    .25    .77   1.01    .00     .0      .0       0.     .00
+  41    5.900  30.50    .0       .0       .0   5.11   2.85   2.85    .00    .23    .76    .99    .00     .0      .0       0.     .00
+  42    5.800  30.50    .0       .0       .0   5.16   2.77   2.77    .00    .21    .75    .96    .00     .0      .0       0.     .00
+  43    5.700  30.50    .0       .0       .0   5.20   2.70   2.70    .00    .20    .74    .94    .00     .0      .0       0.     .00
+  44    5.600  30.50    .0       .0       .0   5.23   2.64   2.64    .00    .19    .73    .91    .00     .0      .0       0.     .00
+  45    5.500  30.50    .0       .0       .0   5.27   2.58   2.58    .00    .18    .72    .89    .00     .0      .0       0.     .00
+  46    5.400  30.50    .0       .0       .0   5.30   2.52   2.52    .00    .17    .71    .87    .00     .0      .0       0.     .00
+
+ * CM-I = CONDUCTIVITY (UMHOS/CM)           CM-II = CHLORIDE  (MG/L)                  NCM =                           
+                                                                                                      
+ ** G/CU M    
+1
+ FINAL REPORT       RHODAIR GULLY                                 RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+ REACH NO.  5    UNND TRIB 2 TO UNND TRIB 3                       SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ ********************************************************** REACH INPUTS ***********************************************************
+
+ ELEM  TYPE         FLOW    TEMP     SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   PHOS  CHL A     COLI     NCM
+ NO.                 CMS   DEG C      PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L    #/100ML    *
+
+  63   UPR RCH     .1178   30.50      .00       .0       .0   5.30   2.52   2.52    .00    .17    .71    .00     .0       0.     .00
+  63   TRIB        .0000   30.50      .00       .0       .0   1.85    .55    .55    .00    .02    .53    .00     .0       0.     .00
+
+
+ *************************************************** HYDRAULIC PARAMETER VALUES ****************************************************
+
+ ELEM   BEGIN  ENDING       FLOW   PCT   ADVCTV  TRAVEL   DEPTH  WIDTH   VOLUME    SURFACE  X-SECT     TIDAL  TIDAL   DISPRSN   MEAN
+  NO.    DIST    DIST              EFF    VELO    TIME                               AREA    AREA      PRISM   VELO             VELO
+          KM      KM         CMS           M/S    DAYS      M      M      CU M       SQ M    SQ M      CU M    M/S    SQ M/S    M/S
+
+   63    5.40    5.30      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   64    5.30    5.20      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   65    5.20    5.10      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   66    5.10    5.00      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   67    5.00    4.90      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   68    4.90    4.80      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   69    4.80    4.70      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   70    4.70    4.60      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   71    4.60    4.50      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   72    4.50    4.40      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   73    4.40    4.30      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   74    4.30    4.20      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   75    4.20    4.10      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+   76    4.10    4.00      .1178   30.3   .007      .18   1.00   18.0     1799.     1798.6    18.0        0.   .000      .004   .007
+
+  TOT                                              2.47                  25180.    25179.9
+  AVG                                     .007            1.00   18.0                         18.0
+  CUM                                              5.34
+
+
+ ********************************************** BIOLOGICAL AND PHYSICAL COEFFICIENTS ***********************************************
+
+ ELEM  ENDING  SAT    REAER   CBOD  CBOD  ANBOD  FULL  CORR   ORGN  ORGN    NH3   NH3  DENIT   PO4   ALG   MAC   COLI    NCM   NCM
+ NO.     DIST  D.O.    RATE  DECAY  SETT  DECAY   SOD   SOD  DECAY  SETT  DECAY  SRCE   RATE  SRCE  PROD  PROD  DECAY  DECAY  SETT
+               MG/L    1/DA   1/DA  1/DA   1/DA    *     *    1/DA  1/DA   1/DA    *    1/DA    *    **    **    1/DA   1/DA  1/DA
+
+  63    5.300  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  64    5.200  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  65    5.100  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  66    5.000  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  67    4.900  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  68    4.800  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  69    4.700  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  70    4.600  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  71    4.500  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+  72    4.400  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+  73    4.300  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+  74    4.200  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+  75    4.100  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+  76    4.000  7.49    1.21    .16   .00    .00  1.48  1.48    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+
+ 20 DEG C RATE                 .10          .00         .70    .00          .30   .00    .00   .00                .00    .00
+ AVG 20 DEG C RATE     1.00          .00                             .00                                                       .00
+
+ * G/SQ M/D            ** MG/L/DAY  
+
+
+ ************************************************ WATER QUALITY CONSTITUENT VALUES *************************************************
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  63    5.300  30.50    .0       .0       .0   5.28   2.45   2.45    .00    .15    .72    .87    .00     .0      .0       0.     .00
+  64    5.200  30.50    .0       .0       .0   5.27   2.38   2.38    .00    .13    .74    .87    .00     .0      .0       0.     .00
+  65    5.100  30.50    .0       .0       .0   5.27   2.31   2.31    .00    .12    .75    .87    .00     .0      .0       0.     .00
+  66    5.000  30.50    .0       .0       .0   5.28   2.25   2.25    .00    .11    .76    .87    .00     .0      .0       0.     .00
+  67    4.900  30.50    .0       .0       .0   5.30   2.19   2.19    .00    .10    .78    .87    .00     .0      .0       0.     .00
+  68    4.800  30.50    .0       .0       .0   5.32   2.13   2.13    .00    .09    .79    .87    .00     .0      .0       0.     .00
+  69    4.700  30.50    .0       .0       .0   5.35   2.07   2.07    .00    .08    .79    .87    .00     .0      .0       0.     .00
+  70    4.600  30.50    .0       .0       .0   5.37   2.01   2.01    .00    .07    .80    .87    .00     .0      .0       0.     .00
+  71    4.500  30.50    .0       .0       .0   5.40   1.95   1.95    .00    .06    .81    .87    .00     .0      .0       0.     .00
+  72    4.400  30.50    .0       .0       .0   5.43   1.90   1.90    .00    .06    .82    .87    .00     .0      .0       0.     .00
+  73    4.300  30.50    .0       .0       .0   5.46   1.85   1.85    .00    .05    .82    .87    .00     .0      .0       0.     .00
+  74    4.200  30.50    .0       .0       .0   5.48   1.80   1.80    .00    .05    .83    .87    .00     .0      .0       0.     .00
+  75    4.100  30.50    .0       .0       .0   5.51   1.75   1.75    .00    .04    .83    .87    .00     .0      .0       0.     .00
+  76    4.000  30.50    .0       .0       .0   5.54   1.70   1.70    .00    .04    .84    .88    .00     .0      .0       0.     .00
+
+ * CM-I = CONDUCTIVITY (UMHOS/CM)           CM-II = CHLORIDE  (MG/L)                  NCM =                           
+                                                                                                      
+ ** G/CU M    
+1
+ FINAL REPORT       RHODAIR GULLY                                 RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+ REACH NO.  7    UNND TRIB 3 TO PORT ACRES WWTF                   SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ ********************************************************** REACH INPUTS ***********************************************************
+
+ ELEM  TYPE         FLOW    TEMP     SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   PHOS  CHL A     COLI     NCM
+ NO.                 CMS   DEG C      PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L    #/100ML    *
+
+  86   UPR RCH     .1178   30.50      .00       .0       .0   5.54   1.70   1.70    .00    .04    .84    .00     .0       0.     .00
+  86   TRIB        .0057   30.50      .00       .0       .0   3.50  16.19  16.19    .00   6.63   4.85    .00     .0       0.     .00
+
+
+ *************************************************** HYDRAULIC PARAMETER VALUES ****************************************************
+
+ ELEM   BEGIN  ENDING       FLOW   PCT   ADVCTV  TRAVEL   DEPTH  WIDTH   VOLUME    SURFACE  X-SECT     TIDAL  TIDAL   DISPRSN   MEAN
+  NO.    DIST    DIST              EFF    VELO    TIME                               AREA    AREA      PRISM   VELO             VELO
+          KM      KM         CMS           M/S    DAYS      M      M      CU M       SQ M    SQ M      CU M    M/S    SQ M/S    M/S
+
+   86    4.00    3.90      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   87    3.90    3.80      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   88    3.80    3.70      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   89    3.70    3.60      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   90    3.60    3.50      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   91    3.50    3.40      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   92    3.40    3.30      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   93    3.30    3.20      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   94    3.20    3.10      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   95    3.10    3.00      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   96    3.00    2.90      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   97    2.90    2.80      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   98    2.80    2.70      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+   99    2.70    2.60      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  100    2.60    2.50      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  101    2.50    2.40      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  102    2.40    2.30      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  103    2.30    2.20      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  104    2.20    2.10      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  105    2.10    2.00      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  106    2.00    1.90      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  107    1.90    1.80      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  108    1.80    1.70      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  109    1.70    1.60      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  110    1.60    1.50      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  111    1.50    1.40      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  112    1.40    1.30      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  113    1.30    1.20      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  114    1.20    1.10      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  115    1.10    1.00      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  116    1.00     .90      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  117     .90     .80      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  118     .80     .70      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  119     .70     .60      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  120     .60     .50      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  121     .50     .40      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  122     .40     .30      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  123     .30     .20      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  124     .20     .10      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+  125     .10     .00      .1235   33.5   .005      .25   1.00   26.3     2632.     2631.6    26.3        0.   .000      .003   .005
+
+  TOT                                              9.86                 105263.   105263.1
+  AVG                                     .005            1.00   26.3                         26.3
+  CUM                                             15.21
+
+
+ ********************************************** BIOLOGICAL AND PHYSICAL COEFFICIENTS ***********************************************
+
+ ELEM  ENDING  SAT    REAER   CBOD  CBOD  ANBOD  FULL  CORR   ORGN  ORGN    NH3   NH3  DENIT   PO4   ALG   MAC   COLI    NCM   NCM
+ NO.     DIST  D.O.    RATE  DECAY  SETT  DECAY   SOD   SOD  DECAY  SETT  DECAY  SRCE   RATE  SRCE  PROD  PROD  DECAY  DECAY  SETT
+               MG/L    1/DA   1/DA  1/DA   1/DA    *     *    1/DA  1/DA   1/DA    *    1/DA    *    **    **    1/DA   1/DA  1/DA
+
+  86    3.900  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  87    3.800  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  88    3.700  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  89    3.600  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  90    3.500  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  91    3.400  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  92    3.300  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  93    3.200  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  94    3.100  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  95    3.000  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  96    2.900  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .64   .00    .00   .00   .00   .00    .00    .00   .00
+  97    2.800  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+  98    2.700  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+  99    2.600  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 100    2.500  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 101    2.400  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 102    2.300  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 103    2.200  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 104    2.100  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 105    2.000  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 106    1.900  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 107    1.800  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 108    1.700  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .65   .00    .00   .00   .00   .00    .00    .00   .00
+ 109    1.600  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 110    1.500  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 111    1.400  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 112    1.300  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 113    1.200  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 114    1.100  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 115    1.000  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 116     .900  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 117     .800  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 118     .700  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 119     .600  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 120     .500  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 121     .400  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 122     .300  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 123     .200  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 124     .100  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+ 125     .000  7.49    1.21    .16   .00    .00  1.61  1.61    .00   .00    .66   .00    .00   .00   .00   .00    .00    .00   .00
+
+ 20 DEG C RATE                 .10          .00         .76    .00          .30   .00    .00   .00                .00    .00
+ AVG 20 DEG C RATE     1.00          .00                             .00                                                       .00
+
+ * G/SQ M/D            ** MG/L/DAY  
+
+
+ ************************************************ WATER QUALITY CONSTITUENT VALUES *************************************************
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  86    3.900  30.50    .0       .0       .0   5.28   2.31   2.31    .00    .31   1.08   1.39    .00     .0      .0       0.     .00
+  87    3.800  30.50    .0       .0       .0   5.19   2.22   2.22    .00    .27   1.12   1.39    .00     .0      .0       0.     .00
+  88    3.700  30.50    .0       .0       .0   5.14   2.13   2.13    .00    .23   1.16   1.39    .00     .0      .0       0.     .00
+  89    3.600  30.50    .0       .0       .0   5.13   2.05   2.05    .00    .20   1.19   1.39    .00     .0      .0       0.     .00
+  90    3.500  30.50    .0       .0       .0   5.14   1.97   1.97    .00    .17   1.22   1.39    .00     .0      .0       0.     .00
+  91    3.400  30.50    .0       .0       .0   5.17   1.90   1.90    .00    .15   1.24   1.39    .00     .0      .0       0.     .00
+  92    3.300  30.50    .0       .0       .0   5.20   1.82   1.82    .00    .13   1.26   1.39    .00     .0      .0       0.     .00
+  93    3.200  30.50    .0       .0       .0   5.24   1.75   1.75    .00    .11   1.28   1.39    .00     .0      .0       0.     .00
+  94    3.100  30.50    .0       .0       .0   5.29   1.69   1.69    .00    .10   1.29   1.39    .00     .0      .0       0.     .00
+  95    3.000  30.50    .0       .0       .0   5.33   1.62   1.62    .00    .08   1.30   1.39    .00     .0      .0       0.     .00
+  96    2.900  30.50    .0       .0       .0   5.38   1.56   1.56    .00    .07   1.32   1.39    .00     .0      .0       0.     .00
+  97    2.800  30.50    .0       .0       .0   5.42   1.50   1.50    .00    .06   1.33   1.39    .00     .0      .0       0.     .00
+  98    2.700  30.50    .0       .0       .0   5.46   1.44   1.44    .00    .05   1.33   1.39    .00     .0      .0       0.     .00
+  99    2.600  30.50    .0       .0       .0   5.50   1.39   1.39    .00    .05   1.34   1.39    .00     .0      .0       0.     .00
+ 100    2.500  30.50    .0       .0       .0   5.54   1.33   1.33    .00    .04   1.35   1.39    .00     .0      .0       0.     .00
+ 101    2.400  30.50    .0       .0       .0   5.58   1.28   1.28    .00    .03   1.35   1.39    .00     .0      .0       0.     .00
+ 102    2.300  30.50    .0       .0       .0   5.61   1.23   1.23    .00    .03   1.36   1.39    .00     .0      .0       0.     .00
+ 103    2.200  30.50    .0       .0       .0   5.64   1.19   1.19    .00    .03   1.36   1.39    .00     .0      .0       0.     .00
+ 104    2.100  30.50    .0       .0       .0   5.67   1.14   1.14    .00    .02   1.36   1.39    .00     .0      .0       0.     .00
+ 105    2.000  30.50    .0       .0       .0   5.70   1.10   1.10    .00    .02   1.37   1.39    .00     .0      .0       0.     .00
+ 106    1.900  30.50    .0       .0       .0   5.72   1.05   1.05    .00    .02   1.37   1.39    .00     .0      .0       0.     .00
+ 107    1.800  30.50    .0       .0       .0   5.75   1.01   1.01    .00    .01   1.37   1.39    .00     .0      .0       0.     .00
+ 108    1.700  30.50    .0       .0       .0   5.77    .97    .97    .00    .01   1.37   1.39    .00     .0      .0       0.     .00
+ 109    1.600  30.50    .0       .0       .0   5.79    .94    .94    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 110    1.500  30.50    .0       .0       .0   5.81    .90    .90    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 111    1.400  30.50    .0       .0       .0   5.83    .87    .87    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 112    1.300  30.50    .0       .0       .0   5.84    .83    .83    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 113    1.200  30.50    .0       .0       .0   5.86    .80    .80    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+ 114    1.100  30.50    .0       .0       .0   5.87    .77    .77    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 115    1.000  30.50    .0       .0       .0   5.89    .74    .74    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 116     .900  30.50    .0       .0       .0   5.90    .71    .71    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 117     .800  30.50    .0       .0       .0   5.91    .69    .69    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 118     .700  30.50    .0       .0       .0   5.92    .66    .66    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 119     .600  30.50    .0       .0       .0   5.93    .63    .63    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 120     .500  30.50    .0       .0       .0   5.94    .61    .61    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 121     .400  30.50    .0       .0       .0   5.95    .59    .59    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 122     .300  30.50    .0       .0       .0   5.96    .56    .56    .00    .00   1.38   1.39    .00     .0      .0       0.     .00
+ 123     .200  30.50    .0       .0       .0   5.97    .54    .54    .00    .00   1.39   1.39    .00     .0      .0       0.     .00
+ 124     .100  30.50    .0       .0       .0   5.98    .52    .52    .00    .00   1.39   1.39    .00     .0      .0       0.     .00
+ 125     .000  30.50    .0       .0       .0   5.98    .49    .49    .00    .01   1.38   1.39    .00     .0      .0       0.     .00
+
+ * CM-I = CONDUCTIVITY (UMHOS/CM)           CM-II = CHLORIDE  (MG/L)                  NCM =                           
+                                                                                                      
+ ** G/CU M    
+1
+ STREAM SUMMARY                                                   RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+    RHODAIR GULLY                                                 SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ TRAVEL TIME      =           15.2 DAYS
+
+ MAXIMUM EFFLUENT =          100.0 PERCENT
+
+ FLOW             =     .0329 TO     .1235 CMS       
+ DISPERSION       =     .0030 TO     .0094 SQ M/S    
+ VELOCITY         =     .0047 TO     .1762 M/S       
+ DEPTH            =     .05   TO    1.00   M         
+ WIDTH            =    3.8    TO   26.3    M         
+
+ BOD DECAY        =     .16   TO     .16   PER DAY   
+ NH3 DECAY        =     .60   TO     .66   PER DAY   
+ SDMNT OXYGEN DMND=     .74   TO    1.61   G/SQ M/D  
+ NH3 SOURCE       =     .00   TO     .00   G/SQ M/D  
+ REAERATION       =    1.21   TO   12.13   PER DAY   
+ BOD SETTLING     =     .00   TO     .00   PER DAY   
+ ORGN DECAY       =     .00   TO     .00   PER DAY   
+ ORGN SETTLING    =     .00   TO     .00   PER DAY   
+
+ TEMPERATURE      =   30.50   TO   30.50   DEG C     
+ DISSOLVED OXYGEN =    3.99   TO    5.98   MG/L      
+1
+ FINAL REPORT       UNND TRIB 2                                   RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+ REACH NO.  4    UNND TRIB 2                                      SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ ********************************************************** REACH INPUTS ***********************************************************
+
+ ELEM  TYPE         FLOW    TEMP     SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   PHOS  CHL A     COLI     NCM
+ NO.                 CMS   DEG C      PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L    #/100ML    *
+
+  47   HDWTR       .0000     .00      .00       .0       .0   6.00   1.30   1.30    .00    .05    .00    .00     .0       0.     .00
+
+
+ *************************************************** HYDRAULIC PARAMETER VALUES ****************************************************
+
+ ELEM   BEGIN  ENDING       FLOW   PCT   ADVCTV  TRAVEL   DEPTH  WIDTH   VOLUME    SURFACE  X-SECT     TIDAL  TIDAL   DISPRSN   MEAN
+  NO.    DIST    DIST              EFF    VELO    TIME                               AREA    AREA      PRISM   VELO             VELO
+          KM      KM         CMS           M/S    DAYS      M      M      CU M       SQ M    SQ M      CU M    M/S    SQ M/S    M/S
+
+   47    1.60    1.50      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   48    1.50    1.40      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   49    1.40    1.30      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   50    1.30    1.20      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   51    1.20    1.10      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   52    1.10    1.00      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   53    1.00     .90      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   54     .90     .80      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   55     .80     .70      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   56     .70     .60      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   57     .60     .50      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   58     .50     .40      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   59     .40     .30      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   60     .30     .20      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   61     .20     .10      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+   62     .10     .00      .0000     .0   .000    27.94    .01     .2        0.       24.1      .0        0.   .000      .000   .000
+
+  TOT                                            447.03                      4.      386.2
+  AVG                                     .000             .01     .2                           .0
+  CUM                                            447.03
+
+
+ ********************************************** BIOLOGICAL AND PHYSICAL COEFFICIENTS ***********************************************
+
+ ELEM  ENDING  SAT    REAER   CBOD  CBOD  ANBOD  FULL  CORR   ORGN  ORGN    NH3   NH3  DENIT   PO4   ALG   MAC   COLI    NCM   NCM
+ NO.     DIST  D.O.    RATE  DECAY  SETT  DECAY   SOD   SOD  DECAY  SETT  DECAY  SRCE   RATE  SRCE  PROD  PROD  DECAY  DECAY  SETT
+               MG/L    1/DA   1/DA  1/DA   1/DA    *     *    1/DA  1/DA   1/DA    *    1/DA    *    **    **    1/DA   1/DA  1/DA
+
+  47    1.500  7.49   12.13    .15   .00    .00   .74   .69    .00   .00    .37   .00    .00   .00   .00   .00    .00    .00   .00
+  48    1.400  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  49    1.300  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  50    1.200  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  51    1.100  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  52    1.000  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  53     .900  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  54     .800  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  55     .700  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  56     .600  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  57     .500  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  58     .400  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  59     .300  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  60     .200  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  61     .100  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+  62     .000  7.49   12.13    .15   .00    .00   .74   .68    .00   .00    .36   .00    .00   .00   .00   .00    .00    .00   .00
+
+ 20 DEG C RATE                 .10          .00         .35    .00          .30   .00    .00   .00                .00    .00
+ AVG 20 DEG C RATE    10.00          .00                             .00                                                       .00
+
+ * G/SQ M/D            ** MG/L/DAY  
+
+
+ ************************************************ WATER QUALITY CONSTITUENT VALUES *************************************************
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  47    1.500  30.50    .0       .0       .0   1.85    .25    .25    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  48    1.400  30.50    .0       .0       .0   1.85    .05    .05    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  49    1.300  30.50    .0       .0       .0   1.85    .01    .01    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  50    1.200  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  51    1.100  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  52    1.000  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  53     .900  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  54     .800  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  55     .700  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  56     .600  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  57     .500  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  58     .400  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  59     .300  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  60     .200  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  61     .100  30.50    .0       .0       .0   1.85    .00    .00    .00    .00    .05    .05    .00     .0      .0       0.     .00
+  62     .000  30.50    .0       .0       .0   1.85    .55    .55    .00    .02    .53    .54    .00     .0      .0       0.     .00
+
+ * CM-I = CONDUCTIVITY (UMHOS/CM)           CM-II = CHLORIDE  (MG/L)                  NCM =                           
+                                                                                                      
+ ** G/CU M    
+1
+ STREAM SUMMARY                                                   RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+    UNND TRIB 2                                                   SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ TRAVEL TIME      =          447.0 DAYS
+
+ MAXIMUM EFFLUENT =             .0 PERCENT
+
+ FLOW             =     .0000 TO     .0000 CMS       
+ DISPERSION       =     .0000 TO     .0000 SQ M/S    
+ VELOCITY         =     .0000 TO     .0000 M/S       
+ DEPTH            =     .01   TO     .01   M         
+ WIDTH            =     .2    TO     .2    M         
+
+ BOD DECAY        =     .15   TO     .15   PER DAY   
+ NH3 DECAY        =     .36   TO     .37   PER DAY   
+ SDMNT OXYGEN DMND=     .68   TO     .69   G/SQ M/D  
+ NH3 SOURCE       =     .00   TO     .00   G/SQ M/D  
+ REAERATION       =   12.13   TO   12.13   PER DAY   
+ BOD SETTLING     =     .00   TO     .00   PER DAY   
+ ORGN DECAY       =     .00   TO     .00   PER DAY   
+ ORGN SETTLING    =     .00   TO     .00   PER DAY   
+
+ TEMPERATURE      =   30.50   TO   30.50   DEG C     
+ DISSOLVED OXYGEN =    1.85   TO    1.85   MG/L      
+1
+ FINAL REPORT       UNND TRIB 3                                   RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+ REACH NO.  6    UNND TRIB 3                                      SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ ********************************************************** REACH INPUTS ***********************************************************
+
+ ELEM  TYPE         FLOW    TEMP     SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   PHOS  CHL A     COLI     NCM
+ NO.                 CMS   DEG C      PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L    #/100ML    *
+
+  77   HDWTR       .0000     .00      .00       .0       .0   6.00   1.30   1.30    .00    .05    .00    .00     .0       0.     .00
+  77   WSTLD       .0057     .00      .00       .0       .0   2.00  20.00  20.00    .00  12.00    .00    .00     .0       0.     .00
+
+
+ *************************************************** HYDRAULIC PARAMETER VALUES ****************************************************
+
+ ELEM   BEGIN  ENDING       FLOW   PCT   ADVCTV  TRAVEL   DEPTH  WIDTH   VOLUME    SURFACE  X-SECT     TIDAL  TIDAL   DISPRSN   MEAN
+  NO.    DIST    DIST              EFF    VELO    TIME                               AREA    AREA      PRISM   VELO             VELO
+          KM      KM         CMS           M/S    DAYS      M      M      CU M       SQ M    SQ M      CU M    M/S    SQ M/S    M/S
+
+   77     .90     .80      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   78     .80     .70      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   79     .70     .60      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   80     .60     .50      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   81     .50     .40      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   82     .40     .30      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   83     .30     .20      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   84     .20     .10      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+   85     .10     .00      .0057  100.0   .010      .12    .09    6.3       58.      632.4      .6        0.   .000      .001   .010
+
+  TOT                                              1.05                    519.     5691.5
+  AVG                                     .010             .09    6.3                           .6
+  CUM                                              1.05
+
+
+ ********************************************** BIOLOGICAL AND PHYSICAL COEFFICIENTS ***********************************************
+
+ ELEM  ENDING  SAT    REAER   CBOD  CBOD  ANBOD  FULL  CORR   ORGN  ORGN    NH3   NH3  DENIT   PO4   ALG   MAC   COLI    NCM   NCM
+ NO.     DIST  D.O.    RATE  DECAY  SETT  DECAY   SOD   SOD  DECAY  SETT  DECAY  SRCE   RATE  SRCE  PROD  PROD  DECAY  DECAY  SETT
+               MG/L    1/DA   1/DA  1/DA   1/DA    *     *    1/DA  1/DA   1/DA    *    1/DA    *    **    **    1/DA   1/DA  1/DA
+
+  77     .800  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .49   .00    .00   .00   .00   .00    .00    .00   .00
+  78     .700  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .51   .00    .00   .00   .00   .00    .00    .00   .00
+  79     .600  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .52   .00    .00   .00   .00   .00    .00    .00   .00
+  80     .500  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .53   .00    .00   .00   .00   .00    .00    .00   .00
+  81     .400  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .54   .00    .00   .00   .00   .00    .00    .00   .00
+  82     .300  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .55   .00    .00   .00   .00   .00    .00    .00   .00
+  83     .200  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .56   .00    .00   .00   .00   .00    .00    .00   .00
+  84     .100  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .56   .00    .00   .00   .00   .00    .00    .00   .00
+  85     .000  7.49    7.99    .16   .00    .00   .74   .74    .00   .00    .58   .00    .00   .00   .00   .00    .00    .00   .00
+
+ 20 DEG C RATE                 .10          .00         .35    .00          .30   .00    .00   .00                .00    .00
+ AVG 20 DEG C RATE     6.58          .00                             .00                                                       .00
+
+ * G/SQ M/D            ** MG/L/DAY  
+
+
+ ************************************************ WATER QUALITY CONSTITUENT VALUES *************************************************
+
+ ELEM  ENDING   TEMP  SALN     CM-I    CM-II    DO     BOD   EBOD   ORGN    NH3  NO3+2   TOTN   PHOS  CHL A   MACRO     COLI     NCM
+ NO.     DIST  DEG C   PPT       *        *    MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   MG/L   UG/L     **     #/100ML    *
+
+  77     .800  30.50    .0       .0       .0   2.26  19.63  19.63    .00  11.35    .65  12.00    .00     .0      .0       0.     .00
+  78     .700  30.50    .0       .0       .0   2.44  19.26  19.26    .00  10.71   1.29  12.00    .00     .0      .0       0.     .00
+  79     .600  30.50    .0       .0       .0   2.59  18.90  18.90    .00  10.10   1.90  12.00    .00     .0      .0       0.     .00
+  80     .500  30.50    .0       .0       .0   2.73  18.55  18.55    .00   9.51   2.49  12.00    .00     .0      .0       0.     .00
+  81     .400  30.50    .0       .0       .0   2.87  18.21  18.21    .00   8.94   3.06  12.00    .00     .0      .0       0.     .00
+  82     .300  30.50    .0       .0       .0   3.00  17.87  17.87    .00   8.40   3.60  12.00    .00     .0      .0       0.     .00
+  83     .200  30.50    .0       .0       .0   3.14  17.54  17.54    .00   7.89   4.11  12.00    .00     .0      .0       0.     .00
+  84     .100  30.50    .0       .0       .0   3.27  17.21  17.21    .00   7.40   4.60  12.00    .00     .0      .0       0.     .00
+  85     .000  30.50    .0       .0       .0   3.50  16.19  16.19    .00   6.63   4.85  11.48    .00     .0      .0       0.     .00
+
+ * CM-I = CONDUCTIVITY (UMHOS/CM)           CM-II = CHLORIDE  (MG/L)                  NCM =                           
+                                                                                                      
+ ** G/CU M    
+1
+ STREAM SUMMARY                                                   RHODAIR GULLY - CRITCOND MODEL (Truncated above Port Acres WWTP 
+    UNND TRIB 3                                                   SUMMER RUN, SOME HYDRAULICS FROM CBI                            
+
+
+ TRAVEL TIME      =            1.1 DAYS
+
+ MAXIMUM EFFLUENT =          100.0 PERCENT
+
+ FLOW             =     .0057 TO     .0057 CMS       
+ DISPERSION       =     .0009 TO     .0009 SQ M/S    
+ VELOCITY         =     .0099 TO     .0099 M/S       
+ DEPTH            =     .09   TO     .09   M         
+ WIDTH            =    6.3    TO    6.3    M         
+
+ BOD DECAY        =     .16   TO     .16   PER DAY   
+ NH3 DECAY        =     .49   TO     .58   PER DAY   
+ SDMNT OXYGEN DMND=     .74   TO     .74   G/SQ M/D  
+ NH3 SOURCE       =     .00   TO     .00   G/SQ M/D  
+ REAERATION       =    7.99   TO    7.99   PER DAY   
+ BOD SETTLING     =     .00   TO     .00   PER DAY   
+ ORGN DECAY       =     .00   TO     .00   PER DAY   
+ ORGN SETTLING    =     .00   TO     .00   PER DAY   
+
+ TEMPERATURE      =   30.50   TO   30.50   DEG C     
+ DISSOLVED OXYGEN =    2.26   TO    3.50   MG/L      
+1
+     .....EXECUTION COMPLETED
+1
