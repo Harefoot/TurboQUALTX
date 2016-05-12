@@ -42,13 +42,15 @@ def parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring):
         values = struct.unpack(fwstr,templine)
         values = [value.strip() for value in values]
         if startstring =='$$$ DATA TYPE 8 (REACH IDENTIFICATION DATA) $$$':
+            #Split the reach name by to
             values[4] = values[4].split("TO")[0].strip()
             temp = values[3].split(" TO ")
             values.append(temp[0].strip())
             try:
                 values.append(temp[1].strip())
             except IndexError:
-                print "Can't split by 'TO'"
+                #print "Can't split by 'TO'"
+                values.append("")
                 pass                    
 
         if startstring =='$$$ DATA TYPE 21 (HEADWATER DATA FOR DO, BOD, AND NITROGEN) $$$':
@@ -61,7 +63,19 @@ def parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring):
             #print i
             #print columns[j]
             #print values[j]
-            cldf[columns[j]][i] = values[j]
+            try:
+                cldf[columns[j]][i] = values[j]
+            except IndexError:
+                print "j ="+str(j)
+                print "i ="+str(i)
+                print "values ="
+                print values
+                print len(values)
+                print "columns ="
+                print columns
+                print len(columns)
+                cldf.to_csv(r'\\aus1.aus.apai\share\Projects\0380\003-01\2-0 Wrk Prod\2-8 MODELS\20160422_Model_Resegmentation\cldf.csv')
+                
     
     cldf = cldf[columns]
     return cldf
@@ -79,20 +93,26 @@ def parse_QUALTXoutfile(QUALTXoutfile):
     #---------------------------------------------------------------------------------------------------------
     #Figure out the original input file first
     #Read all rows into a 1D array
-    f = open(QUALTXoutfile,'r')
-    lines = f.readlines()
-    f.close()
+#    f = open(QUALTXoutfile,'r')
+#    lines = f.readlines()
+#    f.close()
+#    
+#    #Save lines as dataframe for querying
+#    Sdict = {'lines':lines}
+#    ldf = pd.DataFrame(Sdict)
+#    
+#    
+#    #remove the silly \n
+#    #and remove leading leading and trailing spaces
+#    for i in ldf.index:
+#        templine = ldf['lines'][i].strip()
+#        ldf['lines'][i] = templine.split('\n')[0]
     
-    #Save lines as dataframe for querying
-    Sdict = {'lines':lines}
-    ldf = pd.DataFrame(Sdict)
-    
-    #remove the silly \n
-    #and remove leading leading and trailing spaces
-    for i in ldf.index:
-        templine = ldf['lines'][i].strip()
-        ldf['lines'][i] = templine.split('\n')[0]
-    
+    #Use pandas to parse the outfile into lines (pandas can read urls)
+    #Use python engine because c engine cannot handle regex separators, hope it doesn't adversely affect performance by too much
+    #__main__:1: ParserWarning: Falling back to the 'python' engine because the 'c' engine does not support 
+    #regex separators; you can avoid this warning by specifying engine='python'
+    ldf = pd.read_csv(QUALTXoutfile,names = ['lines'],sep = r"K1mp055ibe5tr1n6P4rs3r",engine = 'python')
         
     ldf['CARD'] = ldf['lines']
     ldf['CARD'][:] = ''
@@ -176,7 +196,7 @@ def parse_QUALTXoutfile(QUALTXoutfile):
     AllWQdf = AllWQdf[WQC]
     return StreamNames, Rdf, Hdf, AllWQdf
 
-def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1):
+def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DOstd = np.nan,WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1):
 
     import ET_Utils.Plot_Utils
     figs = []
@@ -242,13 +262,18 @@ def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DO
             Rkms = Rkms1+Rkms2
         
             for i in range(0,len(Points)):
-                ax.plot([Rkms[i],Rkms[i]],y_range,'--',color = 'k')
+                ax.plot([Rkms[i],Rkms[i]],[-999,999],'--',color = 'k')
                 ax.text(Rkms[i],np.mean(y_range),Points[i],va = 'center',rotation = 'vertical')
 
-        if len(DOstds) > 0:
-            for DOstd in DOstds:
-                ax.plot(x_range,[DOstd,DOstd],'--',color = 'k')
-                ax.text(np.mean(x_range),DOstd,"DO std = "+"{:4.1f}".format(DOstd)+" mg/L")
+        #if len(DOstds) > 0:
+
+
+        if DOstd != np.nan:
+            DOstds = [DOstd,DOstd-0.2]
+            vas = ['bottom','top']
+            for i in range(len(DOstds)):
+                ax.plot([-999,999],[DOstds[i],DOstds[i]],'--',color = 'r')
+                ax.text(np.mean(x_range),DOstds[i],"DO std = "+"{:4.1f}".format(DOstds[i])+" mg/L",va = vas[i],color = 'r')
         #Plot legend
         handles, labels = ax.get_legend_handles_labels()
         #legend at top right corner, loc = 1
@@ -267,7 +292,7 @@ def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DO
     return figs
     
 #def Process_QUALTX(inputfolder,QUALTXoutfile,Scenario,DOstds = [],
-def Process_QUALTX(QUALTXoutfile,Scenario,DOstds = [],
+def Process_QUALTX(QUALTXoutfile,Scenario,DOstd = np.nan,
                    WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1,plot_pdf = 1):
     
     #inputfile = os.path.join(inputfolder,QUALTXoutfile)
@@ -292,9 +317,13 @@ def Process_QUALTX(QUALTXoutfile,Scenario,DOstds = [],
         basename = os.path.basename(QUALTXoutfile)
         outputsubfolder = "_".join(basename.split("."))+"_plots"
         outputfolder = os.path.join(outputfolder,outputsubfolder)
-    
+        
         if os.path.exists(outputfolder) == False:
             os.mkdir(outputfolder) 
-        Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DOstds = [],WQC_of_interest = ['DO_MG/L','BOD_MG/L','NH3_MG/L','NO3+2_MG/L','PHOS_MG/L'],loc = 1)
+
+        Rdf.to_csv(os.path.join(outputfolder,'REACH.csv'),index = False)
+        Hdf.to_csv(os.path.join(outputfolder,'HYDR.csv'),index = False)
+        AllWQdf.to_csv(os.path.join(outputfolder,'ALLWQ.csv'),index = False)
+        Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DOstd = DOstd,WQC_of_interest = WQC_of_interest,loc = 1)
     
     return StreamNames, Rdf, Hdf, AllWQdf
