@@ -8,7 +8,6 @@ pd.options.mode.chained_assignment = None  # default='warn'
 import sys
 sys.path.insert(0,r'M:\Library\Python\Packages')
 
-
 import struct
 
 def parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring):
@@ -22,7 +21,13 @@ def parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring):
     #print count
     #print ENDmask
     cldf = ldf[count:ENDmask].reset_index()
-    
+#    print REACH_mask
+#    print startstring    
+#    print count
+#    print cldf['lines'][min(cldf.index)]
+#    print cldf['lines'][max(cldf.index)]
+#    print endstring
+#    print ENDmask
     blanks = np.asarray(np.zeros(len(cldf)),dtype = str)
     blanks[:] = ""
     for column in columns:
@@ -76,6 +81,10 @@ def parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring):
                 print len(columns)
                 cldf.to_csv(r'\\aus1.aus.apai\share\Projects\0380\003-01\2-0 Wrk Prod\2-8 MODELS\20160422_Model_Resegmentation\cldf.csv')
                 
+#        if startstring =='$$$ DATA TYPE 21 (HEADWATER DATA FOR DO, BOD, AND NITROGEN) $$$':
+#            cldf.to_csv(r'\\aus1.aus.apai\share\Projects\0380\003-01\2-0 Wrk Prod\2-8 MODELS\20160422_Model_Resegmentation\cldf.csv')
+#            ldf.to_csv(r'\\aus1.aus.apai\share\Projects\0380\003-01\2-0 Wrk Prod\2-8 MODELS\20160422_Model_Resegmentation\ldf.csv')
+#                
     
     cldf = cldf[columns]
     return cldf
@@ -112,6 +121,7 @@ def parse_QUALTXoutfile(QUALTXoutfile):
     #Use python engine because c engine cannot handle regex separators, hope it doesn't adversely affect performance by too much
     #__main__:1: ParserWarning: Falling back to the 'python' engine because the 'c' engine does not support 
     #regex separators; you can avoid this warning by specifying engine='python'
+    #Note that doing the following will remove any blank lines.  Therefore value offsets will need to be readjusted
     ldf = pd.read_csv(QUALTXoutfile,names = ['lines'],sep = r"K1mp055ibe5tr1n6P4rs3r",engine = 'python')
         
     ldf['CARD'] = ldf['lines']
@@ -146,7 +156,7 @@ def parse_QUALTXoutfile(QUALTXoutfile):
         
         print StreamName
         
-        count = i+5
+        count = i+3
         while True:        
             templine = ldf['lines'][count]        
             values = templine.split()
@@ -170,7 +180,7 @@ def parse_QUALTXoutfile(QUALTXoutfile):
     REACH_cols = ['CARD TYPE','REACH','ID','NAME','BEGIN REACH KM','END REACH KM','ELEM LENGTH KM','REACH LENGTH KM',
                   'ELEMS PER RCH','BEGIN ELEM NUM','END ELEM NUM','BEGIN NAME','END NAME']
     fws = [11,7,4,37,12,8,9,10,9,8,4]
-    value_row_offset = 5
+    value_row_offset = 4
     
     endstring = 'ENDATA08'
     Rdf = parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring)
@@ -179,16 +189,16 @@ def parse_QUALTXoutfile(QUALTXoutfile):
     startstring = '$$$ DATA TYPE 9 (ADVECTIVE HYDRAULIC COEFFICIENTS) $$$'    
     REACH_cols = ['CARD TYPE','REACH','ID','VELOCITY_A','VELOCITY_B','DEPTH_C','DEPTH_D','DEPTH_E','MANNINGS_N']
     fws = [15,7,4,15,15,15,15,15,17]    
-    value_row_offset = 5
+    value_row_offset = 3
     
     endstring = 'ENDATA09'
-    Hdf = parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring)
+    HYdf = parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring)
 
     #Parse the headwaters
     startstring = '$$$ DATA TYPE 21 (HEADWATER DATA FOR DO, BOD, AND NITROGEN) $$$'    
     REACH_cols = ['CARD TYPE','ELEMENT','NAME','DO','BOD','ORG-N','NH3','NO3+2']
     fws = [14,10,25,7,10,10,10,10]
-    value_row_offset = 4    
+    value_row_offset = 2    
     endstring = 'ENDATA21'
     Hdf = parse_card_df(ldf,REACH_cols,fws,value_row_offset,startstring,endstring)
 
@@ -214,7 +224,8 @@ def Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DO
         subplot_counter = 1
         ax = fig.add_subplot(axisartist.Subplot(fig, numrows,numcols,subplot_counter))        
         #x_range = [max(WQdf['ENDING_DIST']),min(WQdf['ENDING_DIST'])]
-        x_range = [min(WQdf['ENDING_DIST']),max(WQdf['ENDING_DIST'])]
+        elem_length = np.abs(WQdf['ENDING_DIST'][min(WQdf.index)+1]-WQdf['ENDING_DIST'][min(WQdf.index)])
+        x_range = [min(WQdf['ENDING_DIST']),max(WQdf['ENDING_DIST'])+elem_length]
         #y_range = [0,25]
         y_label = 'mg/L'
         x_label = 'km'
@@ -301,8 +312,8 @@ def Process_QUALTX(QUALTXoutfile,Scenario,DOstd = np.nan,
     #StreamNames, Rdf, Hdf, AllWQdf = parse_QUALTXoutfile(outputfolder, inputfile)#,HYDRcsv,REACHcsv)
     StreamNames, Rdf, Hdf, AllWQdf = parse_QUALTXoutfile(QUALTXoutfile)#,HYDRcsv,REACHcsv)
  
-    #print Hdf.columns
     Hdfcols = list(Hdf.columns)
+    
     Hdf = pd.merge(Hdf,Rdf,left_on = 'ELEMENT',right_on = 'BEGIN ELEM NUM', how = "inner", suffixes = ['','_right']).reset_index()
     Hdfcols.append('ID')
     Hdf = Hdf[Hdfcols]
@@ -313,16 +324,16 @@ def Process_QUALTX(QUALTXoutfile,Scenario,DOstd = np.nan,
     Rdf = Rdf[Rdfcols]
 
     if plot_pdf == 1:
+            
         outputfolder = os.path.dirname(QUALTXoutfile)
         basename = os.path.basename(QUALTXoutfile)
         outputsubfolder = "_".join(basename.split("."))+"_plots"
         outputfolder = os.path.join(outputfolder,outputsubfolder)
-        
         if os.path.exists(outputfolder) == False:
             os.mkdir(outputfolder) 
 
         Rdf.to_csv(os.path.join(outputfolder,'REACH.csv'),index = False)
-        Hdf.to_csv(os.path.join(outputfolder,'HYDR.csv'),index = False)
+        Hdf.to_csv(os.path.join(outputfolder,'HEAD2.csv'),index = False)
         AllWQdf.to_csv(os.path.join(outputfolder,'ALLWQ.csv'),index = False)
         Plot_QUALTX(StreamNames, Rdf, Hdf, AllWQdf,outputfolder,basename,Scenario,DOstd = DOstd,WQC_of_interest = WQC_of_interest,loc = 1)
     
