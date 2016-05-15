@@ -14,11 +14,10 @@ def trace_downstream(start_latitude, start_longitude, max_length_km):
 
     # Query EPA    
     pBatchResolution = '3'  # 3 = medium-res (NHDPlus), 2 = hi-res
-    pFlowDistance = length_km
     pInputGeometry = 'POINT({0}%20{1})'.format(start_longitude, start_latitude)
     url = (_base_url + 'pBatchResolution=' + pBatchResolution +
            '&pIndexingType=downstream_main' + '&optOut2D=TRUE' +
-           '&pFlowDistance=' + str(length_km) +
+           '&pFlowDistance=' + str(max_length_km) +
            '&pInputGeometry=' + pInputGeometry)
     response = urlopen(url)
     data = response.read()
