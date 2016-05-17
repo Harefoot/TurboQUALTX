@@ -27,7 +27,9 @@ def trace_to_stream(start_latitude, start_longitude):
     features = []
     index_path = {'type': 'Feature',
                   'geometry': json_response['output']['indexing_path'],
-                  'properties': {'name': 'indexing_path'}}
+                  'properties': {
+                      'name': 'indexing_path',
+                      'length_km': json_response['output']['path_distance']}}
     features.append(index_path)
     end_point = {'type': 'Feature',
                   'geometry': json_response['output']['end_point'],
